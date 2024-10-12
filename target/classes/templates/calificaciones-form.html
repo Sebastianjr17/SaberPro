@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formulario Calificación</title>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" th:href="@{/css/form.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .cont-form {
+            width: 60%;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+
+        .titulo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #004899;
+            margin-bottom: 30px;
+        }
+
+        .grupo {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .label {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .entrada {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .entrada:focus {
+            outline: none;
+            border-color: #004899;
+        }
+
+        .button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            background-color: #004899;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #003366;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .button_cerrar {
+            background-color: #dc3545; /* Rojo */
+        }
+
+        .button_cerrar:hover {
+            background-color: #c82333; /* Rojo oscuro */
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Espacio entre botones */
+        }
+    </style>
+</head>
+
+<script>
+    function calcularPuntajeTotal() {
+        var comEscrita = parseInt(document.getElementById('comEscrita').value) || 0;
+        var razonCuantitativo = parseInt(document.getElementById('razonCuantitativo').value) || 0;
+        var lecturaCritica = parseInt(document.getElementById('lecturaCritica').value) || 0;
+        var compeCiudadanas = parseInt(document.getElementById('compeCiudadanas').value) || 0;
+        var ingles = parseInt(document.getElementById('ingles').value) || 0;
+        var formProyectos = parseInt(document.getElementById('formProyectos').value) || 0;
+        var penCientifico = parseInt(document.getElementById('penCientifico').value) || 0;
+        var disenoSoftware = parseInt(document.getElementById('disenoSoftware').value) || 0;
+
+        var puntajeTotal = Math.round((comEscrita + razonCuantitativo + lecturaCritica + compeCiudadanas + ingles + formProyectos + penCientifico + disenoSoftware) / 8);
+        document.getElementById('puntajeTotal').value = puntajeTotal;
+    }
+
+    function toggleAnulado(checkbox) {
+        var anuladoCheckbox = document.getElementById('anuladoCheckbox');
+        var anuladoHidden = document.getElementById('anuladoHidden');
+        var puntajeTotal = document.getElementById('puntajeTotal');
+        var comEscrita = document.getElementById('comEscrita');
+        var razonCuantitativo = document.getElementById('razonCuantitativo');
+        var lecturaCritica = document.getElementById('lecturaCritica');
+        var compeCiudadanas = document.getElementById('compeCiudadanas');
+        var ingles = document.getElementById('ingles');
+        var formProyectos = document.getElementById('formProyectos');
+        var penCientifico = document.getElementById('penCientifico');
+        var disenoSoftware = document.getElementById('disenoSoftware');
+
+        if (anuladoCheckbox.checked) {
+            anuladoHidden.value = 'si';
+            puntajeTotal.value = '0';
+            comEscrita.value = '0';
+            razonCuantitativo.value = '0';
+            lecturaCritica.value = '0';
+            compeCiudadanas.value = '0';
+            ingles.value = '0';
+            formProyectos.value = '0';
+            penCientifico.value = '0';
+            disenoSoftware.value = '0';
+        } else {
+            anuladoHidden.value = 'no';
+        }
+    }
+</script>
+
+<body>
+
+    <main>
+        <div class="cont">
+            <div class="cont-form">
+                <h2 class="titulo">Formulario de Calificación</h2> <!-- Título agregado -->
+                <form th:action="@{/calificaciones/save}" th:object="${calificacion}" method="post" class="formulario">
+                    <input type="hidden" th:field="*{id}">
+                    <div>
+                        <label for="estudiante" class="label">ESTUDIANTE</label>
+                        <select id="estudiante" class="form-control entrada" th:field="*{estudiante}">
+                            <option th:each="estudiante : ${estudiantes}" th:value="${estudiante.id}"
+                                th:text="${estudiante.numeroRegistro}"></option>
+                        </select>
+                    </div>
+                    <div class="grupo">
+                        <label for="anulado" class="label">ANULADO: </label>
+                        <input type="checkbox" id="anuladoCheckbox" onchange="toggleAnulado(this)">
+                        <input type="hidden" th:field="*{anulado}" id="anuladoHidden"
+                            th:value="${calificacion.anulado}">
+                    </div>
+                    <div class="mt-0">
+                        <input type="text" class="form-control entrada" id="puntajeTotal" th:field="*{puntajeTotal}"
+                            placeholder="Puntaje Total" readonly hidden>
+                    </div>
+                    <div class="grupo">
+                        <label for="comEscrita" class="label">Comunicación Escrita: </label>
+                        <input type="text" class="form-control entrada" id="comEscrita" th:field="*{comEscrita}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="razonCuantitativo" class="label">Razonamiento Cuantitativo: </label>
+                        <input type="text" class="form-control entrada" id="razonCuantitativo"
+                            th:field="*{razonCuantitativo}" placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="lecturaCritica" class="label">Lectura Crítica: </label>
+                        <input type="text" class="form-control entrada" id="lecturaCritica" th:field="*{lecturaCritica}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="compeCiudadanas" class="label">Competencias Ciudadanas: </label>
+                        <input type="text" class="form-control entrada" id="compeCiudadanas"
+                            th:field="*{compeCiudadanas}" placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="ingles" class="label">Inglés: </label>
+                        <input type="text" class="form-control entrada" id="ingles" th:field="*{ingles}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="formProyectos" class="label">Formulación de Proyectos: </label>
+                        <input type="text" class="form-control entrada" id="formProyectos" th:field="*{formProyectos}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="penCientifico" class="label">Pensamiento Científico: </label>
+                        <input type="text" class="form-control entrada" id="penCientifico" th:field="*{penCientifico}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="grupo">
+                        <label for="disenoSoftware" class="label">Diseño de Software: </label>
+                        <input type="text" class="form-control entrada" id="disenoSoftware" th:field="*{disenoSoftware}"
+                            placeholder="Digite el puntaje" required>
+                    </div>
+                    <div class="button-wrapper">
+                        <button type="button" class="button" onclick="calcularPuntajeTotal()">AGREGAR</button>
+                        <button type="button" class="button" onclick="window.history.back();">VOLVER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

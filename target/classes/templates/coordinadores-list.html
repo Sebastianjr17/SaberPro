@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>LISTA DE COORDINADORES</title>
+	<meta charset="utf-8">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
+
+	<!--FONT-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+	@charset "ISO-8859-1";
+
+	/* Estilos para la barra de navegación superior de color azul */
+	.navbar-superior {
+		background-color: #004899;
+	}
+
+	/* Estilos para el logo centrado en la barra de navegación superior */
+	.logo {
+		display: block;
+		margin-left: 60px;
+		/* Ajusta este valor según el margen deseado */
+		margin-top: 10px;
+		/* Opcional: agrega un margen superior */
+		width: 180px;
+		height: 40px;
+	}
+
+	/* Estilos para la barra de navegación principal */
+	.navbar-principal {
+		background: #ffffff;
+		border-bottom: 5px solid black;
+	}
+
+	/* Estilos para el botón de "Iniciar sesión" */
+	.button_cerrar {
+		background-color: #C22730;
+		/* Color inicial */
+		border: none;
+		padding: 5px 10px;
+		cursor: pointer;
+		border-radius: 20px;
+		/* Redondear el botón */
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+		/* Agregar sombra */
+	}
+
+	.button_cerrar:hover {
+		background-color: blue;
+		/* Color al hacer hover */
+	}
+
+	.button_cerrar a {
+		color: white;
+		/* Color del texto */
+		text-decoration: none;
+		/* Quitar subrayado */
+	}
+
+	footer {
+		text-align: center;
+		/* Centrar el texto */
+		padding: 20px 100px;
+		/* Espaciado interno */
+	}
+
+	.button_list {
+		background-color: #004899;
+		border: none;
+		border-radius: 20px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+		padding: 5px 10px;
+		margin: 5px;
+	}
+
+	.button_cerrar {
+		background-color: #C22730;
+		color: white;
+		border: none;
+		border-radius: 20px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+		padding: 5px 10px;
+	}
+
+	.button_list:hover,
+	.button_cerrar:hover {
+		background-color: darkred;
+	}
+
+	.separador {
+		border: 1px solid red;
+		/* Línea de color rojo */
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.navbar-principal {
+		border-bottom: none;
+	}
+</style>
+
+<body>
+	<main>
+
+		<div class="container ">
+			<div class="text-center">
+				<h1 class="display-4 fw-bold text-primary mb-4">LISTA DE COORDINADORES</h1>
+			</div>
+
+			<table class="table table-striped"
+				style="border: 2px solid black; background-color:#004899; text-align: left; color: white; padding: 10px; border: 0px solid #ddd;">
+				<thead>
+					<tr style="border: 2px solid black; font-family: 'Roboto Slab', serif; text-align: center" class="">
+						<td><strong>Nombre</strong></td>
+						<td><strong>Apellidos</strong></td>
+						<td><strong>Documento</strong></td>
+						<td><strong>Celular</strong></td>
+						<td><strong>Usuario</strong></td>
+						<td><strong>Editar</strong></td>
+						<td><strong>Eliminar</strong></td>
+					</tr>
+				</thead>
+				<tbody
+					style="border: 2px solid black; text-align: center;	padding: 8px; border: px solid #ddd; color: white; align-items: center; background-color: rgb(226, 231, 228); color: rgb(0, 0, 0);">
+					<tr th:each="coordinador : ${coordinadores}">
+						<td>[[ ${coordinador.nombre} ]]</td>
+						<td>[[ ${coordinador.apellidos} ]]</td>
+						<td>[[ ${coordinador.documento} ]]</td>
+						<td>[[ ${coordinador.celular} ]]</td>
+						<td>[[ ${coordinador.user} ]]</td>
+						<td>
+							<a class="mx-3 text-success" th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
+								<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path fill="currentColor"
+										d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
+									</path>
+								</svg>
+							</a>
+						</td>
+						<td>
+							<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}">
+								<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+									class="si-glyph si-glyph-delete">
+
+									<title>1227</title>
+
+									<defs>
+
+									</defs>
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<path
+											d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.387,4.956 L3.431,8 L0.387,11.044 C-0.034,11.465 -0.034,12.147 0.388,12.567 L3.432,15.611 C3.852,16.032 4.534,16.032 4.955,15.611 L7.999,12.567 L11.043,15.611 C11.464,16.032 12.146,16.032 12.566,15.611 L15.611,12.567 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 L12.566,8 Z"
+											fill="currentColor" class="si-glyph-fill">
+
+										</path>
+									</g>
+								</svg>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</main>
+
+	<div style="margin-left: 600px; margin-bottom: 30px;">
+		<a th:href="@{/coordinadores/new}" class="btn btn-primary"
+			style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+			AGREGAR
+		</a>
+		<a href="javascript:history.back()" class="btn btn-secondary"
+			style="margin-top: 2%; margin-left: 10px; border-radius: 10px;">
+			VOLVER
+		</a>
+	</div>
+
+</body>
+
+</html>
