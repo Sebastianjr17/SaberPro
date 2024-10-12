@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Principal</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			background-image: url(https://img.freepik.com/vector-gratis/fondo-geometrico-moderno-pastel_1017-33891.jpg?w=2000);
+			background-position: center center;
+			background-attachment: fixed;
+			font-family: 'Montserrat', sans-serif;
+			color: #333;
+		}
+
+		#nav_princ {
+			height: 80px;
+		}
+
+		.button_list {
+			background: #f5f5f5;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			margin-right: 2%;
+			border-radius: 20px;
+			color: #333;
+			font-size: 16px;
+			display: inline-block;
+			vertical-align: middle;
+			padding: 10px 20px;
+			border: none;
+			transition: all 0.3s ease;
+		}
+
+		.button_list:hover {
+			background-color: #007bff;
+			color: white;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		.button_cerrar {
+			background-color: #f5f5f5;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			color: #333;
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: 0.5%;
+			border: none;
+			border-radius: 20px;
+			padding: 10px 20px;
+			transition: all 0.3s ease;
+		}
+
+		.button_cerrar:hover {
+			background-color: #ff4d4d;
+			color: white;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		/* Estilos para la sección de productos */
+		.products {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin-top: 40px;
+		}
+
+		/* Estilos para cada producto individual */
+		.product {
+			background-color: #fff;
+			border: none;
+			border-radius: 10px;
+			margin: 20px;
+			padding: 20px;
+			text-align: center;
+			width: 300px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease;
+		}
+
+		.product:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		}
+
+		.product img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 5px;
+		}
+
+		.product h3 {
+			font-size: 20px;
+			margin-top: 15px;
+			font-family: 'Raleway', sans-serif;
+			font-weight: 700;
+		}
+
+		.product p {
+			font-size: 16px;
+			margin-top: 10px;
+			color: #666;
+		}
+
+		.product a {
+			color: #007bff;
+			text-decoration: none;
+			font-weight: bold;
+			transition: all 0.3s ease;
+		}
+
+		.product a:hover {
+			text-decoration: underline;
+			color: #0056b3;
+		}
+
+		footer {
+			width: 100%;
+			text-align: center;
+			padding: 20px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			font-size: 15px;
+			border-top: 1px solid #ddd;
+			display: inline-block;
+			font-family: 'Raleway', sans-serif;
+			color: #666;
+		}
+
+		.noticias {
+			background-color: #f5f5f5;
+			padding: 40px;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			margin-top: 40px;
+		}
+
+		/* Estilo para cada noticia */
+		.noticia {
+			background-color: white;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 10px;
+			display: flex;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.noticia:hover {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+			transform: translateY(-5px);
+		}
+
+		/* Estilo para la imagen de la noticia */
+		.imagen {
+			width: 200px;
+			margin-right: 20px;
+			border-radius: 5px;
+		}
+
+		/* Estilo para el título de la noticia */
+		.titulo {
+			font-size: 24px;
+			font-weight: 700;
+			font-family: 'Raleway', sans-serif;
+			margin-bottom: 10px;
+		}
+
+		/* Estilo para el cuerpo de la noticia */
+		.cuerpo {
+			font-size: 16px;
+			color: #666;
+		}
+
+		/* Estilos para hacer la página responsive */
+		@media (max-width: 767px) {
+			.noticia {
+				flex-direction: column;
+			}
+
+			.imagen {
+				width: 100%;
+				margin-right: 0;
+				margin-bottom: 10px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		
+		<!-- NAV -->
+		<nav id="nav_princ" class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(to right,#006AB2, #004F87,#004F87,#006AB2,#004F87, #004F87,#006AB2); border-top: 5px solid black; color: white;">
+			<a th:href="@{/}">
+			<div style="display: inline-block;" class="ml-4">
+				<img src="https://www.icfes.gov.co/documents/39286/27819682/Logo+Icfes.svg/dae46d08-1944-12a7-9e5f-1f81a7c977a1?t=1706277124352" style="height: 60px; width: 180px; vertical-align: middle;">
+			</div>
+			<!-- <div
+				style="color: aliceblue; display: inline-block; vertical-align: middle; font-size: 30px;" class="ml-2"><span></span>
+			</div> -->
+			</a>
+			
+			<div style="display: inline-block; margin-left: auto; margin: 1px solid black;">
+				<img src="https://www.icfes.gov.co/documents/39286/190613/logo-gov-co.png" alt="" style="width: 150px; ">
+			</div>
+			
+			<div class="ml-auto mr-4" style="display: inline-block;">
+				<button class="button_cerrar">
+					<a th:href="@{/login}" style=" text-decoration: none; ">
+						<span style="color: red;  font-family: 'Roboto Slab', serif; font-weight: bolder; font-size: 120%; padding-left: 5px; padding-right: 5px;">Iniciar sesión</spa>
+					</a>
+				</button>
+			</div>
+		</nav>
+		<!-- NAV -->
+		
+		
+	</header>
+
+	<section class="intro-section" style="background-color: #f5f5f5; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 5%; display: flex; align-items: center;">
+    <div style="width: 30%; text-align: center; display: flex; align-items: center;">
+        <img style="border-radius: 5px; max-width: 100%; border: 2px solid #ddd;" src="https://www.icfes.gov.co/documents/39286/27819682/logo-org.svg" alt="Imagen principal">
+    </div>
+    <div style="width: 60%; padding-left: 40px;">
+        <h2 style="font-family: 'Raleway', sans-serif; font-weight: 700; color: #333;">Icfes Social</h2>
+        <p style="font-family: 'Montserrat', sans-serif; color: #666;">Somos una entidad que reconoce y valora la calidad de la educación como la clave para construir escenarios de inclusión social, aportar a la competitividad económica y laboral del país y fortalecer los espacios comunes de aprendizaje, como las aulas de clase.
+
+            Nuestra esencia es transformar los resultados de las pruebas de Estado en una oportunidad para identificar las necesidades de aprendizaje y apropiación de competencias de las personas, en cualquier etapa de su vida.
+            Hoy, recorremos el País aprendiendo de nuestros niños, niñas y jóvenes, de sus contextos socio emocionales, de cómo apropian el conocimiento y lo transforman en competencias para la vida. Acompáñanos en este viaje por el territorio nacional con Icfes social.</p>
+    </div>
+</section>
+
+
+
+		<section class="news-section" style="background-color: #f5f5f5; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 5%; margin-top: 40px; overflow: hidden;">
+			<h2 style="font-family: 'Raleway', sans-serif; font-weight: 700; color: #333; margin-bottom: 20px;">Noticias</h2>
+			<div class="noticia" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; display: flex; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+				<img src="https://www.icfes.gov.co/documents/39286/469458/25042024.jpeg/20a86f8a-c6b0-1c82-fe43-d6c4fb557b7b?t=1714075161113" alt="Noticia 1" class="imagen" style="width: 200px; margin-right: 20px; border-radius: 5px;">
+				<div>
+					<h3 style="font-family: 'Raleway', sans-serif; font-weight: 700; color: #333; margin-bottom: 10px;">Colombia y Paraguay consolidan alianza para contribuir en innovación de la evaluación educativa</h3>
+					<p style="font-family: 'Montserrat', sans-serif; color: #666;">Bogotá, 24 de abril de 2024 -  Con el propósito de avanzar en la consolidación de una alianza que contribuya a fortalecer las capacidades conjuntas para innovar en materia de evaluación educativa, con especial énfasis en programas de medicina, la directora general del Icfes, Elizabeth Blandón Bermúdez, sostuvo una reunión con el ministro paraguayo de Educación y Ciencias, Luis Fernando Ramírez y el viceministro de Educación Superior,  Federico Mora.
+
+
+"Esta reunión con representantes del gobierno de Paraguay, representa un hito importante en la ruta de consolidación del Icfes como referente internacional en análisis y evaluación de la calidad de la educación mediante procesos de transferencia de conocimiento y asistencia técnica a entidades pares de la región", sostuvo la directora general del Icfes, que se encuentra de visita en Asunción para la firma del Convenio marco de cooperación con el Ministerio de Educación y Ciencias (MEC) de Paraguay.
+</p>
+				</div>
+			</div>
+
+			<div class="noticia" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; display: flex; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+				<img src="https://www.icfes.gov.co/documents/39286/469458/16042024.jpeg/b20f9019-2192-ab24-c1c4-9fdd6b40fcd8?t=1713305413540" alt="Noticia 2" class="imagen" style="width: 200px; margin-right: 20px; border-radius: 5px;">
+				<div>
+					<h3 style="font-family: 'Raleway', sans-serif; font-weight: 700; color: #333; margin-bottom: 10px;">Icfes abrió inscripciones para la prueba Saber 11 calendario A que se realizará en agosto</h3>
+					<p style="font-family: 'Montserrat', sans-serif; color: #666;">Bogotá, 17 de abril de 2024 - El Instituto Colombiano para la Evaluación de la Educación - Icfes, hizo un llamado a los rectores e instituciones educativas de calendario A para realizar con tiempo el proceso de inscripción de sus estudiantes, de manera que no afecte su tránsito hacia la educación superior, al dar apertura al proceso de inscripción para las pruebas Saber 11 calendario A, Pre Saber y Validación del Bachillerato Académico, el domingo  11 de agosto de 2024 que se realizarán en sitio bajo la modalidad lápiz y papel.</p>
+				</div>
+			</div>
+
+    <div class="noticia" style="background-color: white; padding: 20px; margin-bottom: 20px; border-radius: 10px; display: flex; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <img src="https://www.icfes.gov.co/documents/39286/0/14042024.jpeg/c44cd9b5-b2fd-407d-0a73-1bae8f5c5d98?t=1713135928957" alt="Noticia 1" class="imagen" style="width: 200px; margin-right: 20px; border-radius: 5px;">
+    <div>
+        <h3 style="font-family: 'Raleway', sans-serif; font-weight: 700; color: #333; margin-bottom: 10px;">Avanzamos en la ruta de transición de lápiz y papel a modalidad electrónica para las pruebas Saber 11</h3>
+        <p style="font-family: 'Montserrat', sans-serif; color: #666;">Bogotá, 14 de abril de 2024 - En la aplicación de las pruebas Saber 11 calendario B, que se realizó a cerca de 122 mil personas en 94 municipios del país, el Instituto Colombiano para la Evaluación de la Educación - Icfes, dentro del proceso de modernización de la entidad, reveló que avanza con paso firme a transformar el esquema de aplicación tradicional de los exámenes de Estado Saber 11 en modalidad lápiz y papel hacia esquemas híbridos en los que progresivamente más jóvenes puedan participar en la aplicación mediante modalidad electrónica.
+
+
+"La transición en la modalidad de aplicación de los exámenes de Estado de educación media (Saber 11) de lápiz y papel hacia un formato electrónico, es un proceso multivariado que demanda progresividad. </p>
+    </div>
+</div>
+
+	
+
+
+
+
+	</main>
+</body>
+
+<footer class="sticky-footer" style="background: linear-gradient(to right,#006AB2, #004F87,#004F87,#006AB2,#004F87, #004F87,#006AB2); border-top: 5px solid black; color: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <h5 style="font-weight: bold;">
+                    <img src="https://govco-prod-webutils.s3.amazonaws.com/uploads/2022-12-13/b11497d5-a424-47f6-8974-881bca7be9ab-1imagen_noticia.svg" alt="" style="width: 20px; margin: 5px;">Contacto</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Nacional:</strong> 01 8000 95 2525</li>
+                    <li><strong>Bogotá:</strong> +(57) 601 390 7950</li>
+                    <li><strong>Línea Anticorrupción:</strong> 01 8000 91 2667</li>
+                </ul>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5 style="font-weight: bold;">
+                    <img src="https://govco-prod-webutils.s3.amazonaws.com/uploads/2023-10-10/023c5f33-1e9f-4d92-bc83-443c23fcafde-1imagen_noticia.png" alt="" style="width: 20px; margin: 5px;">Accesos rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" style="color: white;">Actualidad</a></li>
+                    <li><a href="#" style="color: white;">Entidades</a></li>
+                    <li><a href="#" style="color: white;">Sobre Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5 style="font-weight: bold;">
+                    <img src="https://govco-prod-webutils.s3.amazonaws.com/uploads/2023-10-10/30a911f6-1958-423f-b4b0-3ac6970bafff-1imagen_noticia.png" alt="" style="width: 20px; margin: 5px;">Servicios para entidades</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" style="color: white;">Biblioteca</a></li>
+                    <li><a href="#" style="color: white;">Caja de Herramientas</a></li>
+                    <li><a href="#" style="color: white;">Plan de integración</a></li>
+                    <li><a href="#" style="color: white;">Mi Colombia Digital</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="https://www.icfes.gov.co/documents/39286/190613/logo-gov-co.png" alt="" style="width: 150px;">
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="footer-links">
+                    <span style="font-weight: bold;">Privacidad</span>
+                    <span style="font-weight: bold;">Términos y condiciones</span>
+                    <span style="font-weight: bold;">Política de cookies</span>
+                    <span style="font-weight: bold;">Ajustes de cookies</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="https://img.uefa.com/imgml/2016/euro/common-elements/appstore.png?imwidth=166" alt="" style="width: 110px; margin: 0 10px;">
+                <img src="https://img.uefa.com/imgml/2016/euro/common-elements/googleplay.png?imwidth=166" alt="" style="width: 110px; margin: 0 10px;">
+            </div>
+        </div>
+       
+    </div>
+</footer>
+
+
+</html>

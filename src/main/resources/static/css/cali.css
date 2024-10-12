@@ -1,0 +1,79 @@
+@charset "ISO-8859-1";
+/* Estilos para la barra de navegación superior de color azul */
+.navbar-superior {
+    background-color: #004899;
+}
+
+/* Estilos para el logo centrado en la barra de navegación superior */
+.logo {
+    display: block;
+    margin-left: 0px; /* Ajusta este valor según el margen deseado */
+    margin-top: 10px; /* Opcional: agrega un margen superior */
+    width: 180px;
+    height: 40px;
+}
+
+
+/* Estilos para la barra de navegación principal */
+.navbar-principal {
+    background: #ffffff;
+    border-bottom: 5px solid black;
+}
+
+/* Estilos para el botón de "Iniciar sesión" */
+.button_cerrar {
+    background-color: #C22730; /* Color inicial */
+    border: none;
+    padding: 5px 10px;
+    
+    cursor: pointer;
+    border-radius: 20px; /* Redondear el botón */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Agregar sombra */
+}
+
+.button_cerrar:hover {
+    background-color: blue; /* Color al hacer hover */
+}
+
+.button_cerrar a {
+    color: white; /* Color del texto */
+    text-decoration: none; /* Quitar subrayado */
+}
+
+footer {
+    text-align: center; /* Centrar el texto */
+    padding: 20px 100px; /* Espaciado interno */
+}
+  .button_list {
+    background-color: #004899;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.button_cerrar {
+    background-color: #C22730;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 5px 10px;
+}
+
+.button_list:hover, .button_cerrar:hover {
+    background-color: darkred;
+}
+
+.separador {
+    border: 1px solid red; /* Línea de color rojo */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+    .navbar-principal {
+    border-bottom: none;
+}
+
+        
