@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Portal Icfes</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<!--FAVICON-->
 	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -53,8 +52,10 @@
 
 		/* Botones principales */
 		.btn-custom {
-			width: 100%;
-			padding: 15px;
+			width: auto;
+			/* Cambiado de 100% a auto */
+			padding: 10px 20px;
+			/* Ajustado para que sea más compacto */
 			margin-bottom: 15px;
 			border: none;
 			border-radius: 8px;
@@ -159,13 +160,12 @@
 
 	<!-- Presentación Inicial -->
 	<div class="container" id="presentation">
-		<header>Bienvenido al Portal Icfes</header>
+		<header>¡Bienvenido al Portal Icfes!</header>
 		<hr>
-		<p>Accede a nuestros servicios en línea para estudiantes y coordinadores. Selecciona la opción adecuada para
-			iniciar sesión.</p>
+		<p>Accede fácilmente a nuestros servicios en línea, diseñados especialmente para ti. Selecciona tu opción.</p>
 
-		<button class="btn-custom btn-green" onclick="showLogin('estudiante')">Iniciar Sesión como Estudiante</button>
-		<button class="btn-custom" onclick="showLogin('coordinador')">Iniciar Sesión como Coordinador</button>
+		<button class="btn-custom btn-green" onclick="showLogin('estudiante')">Estudiante</button>
+		<button class="btn-custom" onclick="showLogin('coordinador')">Coordinador</button>
 	</div>
 
 	<!-- Formulario de Inicio de Sesión - Estudiante -->
