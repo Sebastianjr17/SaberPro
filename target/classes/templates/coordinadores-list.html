@@ -190,6 +190,7 @@
 					<td><strong>Documento</strong></td>
 					<td><strong>Celular</strong></td>
 					<td><strong>Usuario</strong></td>
+					<td><strong>Clave</strong></td>
 					<td><strong>Editar</strong></td>
 					<td><strong>Eliminar</strong></td>
 				</tr>
@@ -201,6 +202,7 @@
 					<td>[[ ${coordinador.documento} ]]</td>
 					<td>[[ ${coordinador.celular} ]]</td>
 					<td>[[ ${coordinador.user} ]]</td>
+					<td>[[ ${coordinador.password} ]]</td>
 					<td>
 						<a class="mx-3 text-success" th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
 							<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"

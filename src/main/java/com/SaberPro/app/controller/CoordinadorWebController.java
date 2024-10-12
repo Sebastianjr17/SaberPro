@@ -18,67 +18,57 @@ import com.SaberPro.app.repository.CoordinadorRepository;
 @RequestMapping("/coordinadores")
 public class CoordinadorWebController {
 
-	@Autowired
-	private CoordinadorRepository coordinadorRepository;
+    @Autowired
+    private CoordinadorRepository coordinadorRepository;
 
-	@GetMapping("/")
-	public String CoordinadorListTemplate(Model model) {
-		model.addAttribute("coordinadores", coordinadorRepository.findAll());
-		return "coordinadores-list";
-	}
+    @GetMapping("/")
+    public String CoordinadorListTemplate(Model model) {
+        model.addAttribute("coordinadores", coordinadorRepository.findAll());
+        return "coordinadores-list"; // Vista para listar coordinadores
+    }
 
-	@GetMapping("/new")
-	public String coordinadoresNewTemplate(Model model) {
-		model.addAttribute("coordinador", new Coordinador());
-		return "coordinadores-form";
-	}
+    @GetMapping("/new")
+    public String coordinadoresNewTemplate(Model model) {
+        model.addAttribute("coordinador", new Coordinador());
+        return "coordinadores-form"; // Vista para el formulario de nuevo coordinador
+    }
 
-	@GetMapping("/edit/{id}")
-	public String CoordinadorEditTemplate(@PathVariable("id") String id, Model model) {
-		// Verificar que el coordinador exista
-		Coordinador coordinador = coordinadorRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Coordinador no encontrado"));
-		model.addAttribute("coordinador", coordinador);
-		return "coordinadores-form";
-	}
+    @GetMapping("/edit/{id}")
+    public String CoordinadorEditTemplate(@PathVariable("id") String id, Model model) {
+        Coordinador coordinador = coordinadorRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Coordinador no encontrado"));
+        model.addAttribute("coordinador", coordinador);
+        return "coordinadores-form"; // Vista para editar coordinador
+    }
 
-	@PostMapping("/save")
-	public String coordinadoresSaveProcess(@ModelAttribute("coordinador") Coordinador coordinador) {
-		// Verifica si el ID es nulo
-		if (coordinador.getId() == null) {
-			coordinador.setId(null);
-		}
-		coordinadorRepository.save(coordinador);
-		return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
-	}
+    @PostMapping("/save")
+    public String coordinadoresSaveProcess(@ModelAttribute("coordinador") Coordinador coordinador) {
+        // Guardamos el coordinador; el ID se generará automáticamente
+        coordinadorRepository.save(coordinador);
+        return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
+    }
 
-	@GetMapping("/delete/{id}")
-	public String coordinadoresDeleteProcess(@PathVariable("id") String id) {
-		coordinadorRepository.deleteById(id);
-		return "redirect:/coordinadores/";
-	}
+    @GetMapping("/delete/{id}")
+    public String coordinadoresDeleteProcess(@PathVariable("id") String id) {
+        coordinadorRepository.deleteById(id);
+        return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
+    }
 
-	@GetMapping("/registro")
-	public String registroTemplate(Model model) {
-		model.addAttribute("coordinador", new Coordinador());
-		return "registro-coordinador";
-	}
+    @GetMapping("/registro")
+    public String registroTemplate(Model model) {
+        model.addAttribute("coordinador", new Coordinador());
+        return "registro-coordinador"; // Vista para el registro de coordinador
+    }
 
-	@PostMapping("/ingresar")
-	public String login(@RequestParam("user") String user, @RequestParam("password") String password, Model model) {
-		// Verificar las credenciales
-		System.out.println("Usuario: " + user + " Password:" + password);
-
-		Coordinador coordinador = coordinadorRepository.findByUserAndPassword(user, password);
-		if (coordinador != null) {
-			// Inicio de sesión exitoso, redirigir a la página de inicio
-			System.out.println("Usuario: " + coordinador.getUser() + " Password:" + coordinador.getPassword());
-			return "home"; // Nombre de la página de inicio
-		} else {
-			// Inicio de sesión fallido
-			model.addAttribute("authenticationFailed", true);
-			model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
-			return "login-general";
-		}
-	}
+    @PostMapping("/ingresar")
+    public String login(@RequestParam("user") String user, @RequestParam("password") String password, Model model) {
+        Coordinador coordinador = coordinadorRepository.findByUserAndPassword(user, password);
+        if (coordinador != null) {
+            return "home"; // Redirige a la página de inicio si el login es exitoso
+        } else {
+            model.addAttribute("authenticationFailed", true);
+            model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
+            return "login-general"; // Vista para login fallido
+        }
+    }
 }
