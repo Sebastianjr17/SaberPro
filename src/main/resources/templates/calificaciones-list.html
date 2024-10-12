@@ -2,192 +2,391 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Puntajes</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+	<title>Puntajes</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Enlace al archivo CSS de Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Enlace al archivo JavaScript de jQuery (necesario para algunas funciones de Bootstrap) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- FAVICON -->
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
 
-    <!-- Enlace al archivo JavaScript de Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
 
-    <!--FAVICON-->
-    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
+	<style>
+		body {
+			font-family: 'Roboto Slab', serif;
+			background-color: #f5f5f5;
+			margin: 0;
+			padding: 0;
+		}
 
-    <!--FONT-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/cali.css">
+		header {
+			background-color: #343a40;
+			padding: 10px;
+		}
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .custom-table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 20px 0;
-            font-size: 0.9em;
-            font-family: 'Roboto Slab', serif;
-            border: 1px solid #ddd;
-        }
-        .custom-table th, .custom-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .nivel-verde { background-color: #d4edda; }
-        .nivel-amarillo { background-color: #fff3cd; }
-        .nivel-azul { background-color: #cce5ff; }
-        .nivel-rojo { background-color: #f8d7da; }
-    </style>
+		header nav .button_cerrar {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			padding: 12px 20px;
+			border-radius: 5px;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		header nav .button_cerrar:hover {
+			background-color: #218838;
+		}
+
+		h1 {
+			font-family: 'Righteous', sans-serif;
+			text-align: center;
+			margin: 20px 0;
+			color: #0056b3;
+			font-size: 2rem;
+		}
+
+		/* Formulario y tablas */
+		.table-container {
+			max-width: 100%;
+			overflow-x: auto;
+			margin: 20px 0;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+			background-color: white;
+			padding: 20px;
+		}
+
+		table {
+			width: 100%;
+			text-align: center;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			border: 1px solid #ddd;
+			padding: 16px;
+			font-size: 18px;
+		}
+
+		th {
+			background-color: #007bff;
+			/* Color de fondo azul */
+			color: rgb(0, 0, 0);
+			/* Color de texto blanco */
+			font-weight: bold;
+			/* Asegura que el texto sea más notorio */
+		}
+
+		td {
+			color: #333;
+		}
+
+		input[type="text"],
+		input[type="number"],
+		select {
+			color: black !important;
+			/* Asegura que el texto siempre sea visible */
+		}
+
+		input[type="text"]:focus,
+		input[type="number"]:focus,
+		select:focus {
+			outline: none;
+			box-shadow: 0 0 5px #007bff;
+		}
+
+		/* Botón Resultado Detallado */
+		.button-result {
+			display: inline-block;
+			padding: 15px 30px;
+			background-color: #007bff;
+			color: white;
+			text-decoration: none;
+			border-radius: 8px;
+			margin-top: 30px;
+			font-size: 1.2rem;
+			transition: background-color 0.3s ease;
+			border: none;
+			/* Quitar borde */
+		}
+
+		.button-result:hover {
+
+			box-shadow: 0 4px 8px rgb(255, 255, 255);
+			/* Añadir sombra en hover */
+		}
+
+		.button-result:focus {
+			outline: none;
+			/* Sin contorno al enfocar */
+			background-color: #007bff;
+			/* Mantener color original al hacer clic */
+		}
+
+		/* Media Queries */
+		@media (max-width: 768px) {
+			h1 {
+				font-size: 1.8rem;
+			}
+
+			th,
+			td {
+				padding: 12px;
+				font-size: 16px;
+			}
+
+			.button_cerrar {
+				font-size: 14px;
+				padding: 10px 18px;
+			}
+
+			.button-result {
+				font-size: 1rem;
+				padding: 12px 24px;
+			}
+		}
+
+		@media (max-width: 576px) {
+			h1 {
+				font-size: 1.5rem;
+			}
+
+			th,
+			td {
+				font-size: 14px;
+			}
+
+			.button_cerrar {
+				font-size: 12px;
+				padding: 8px 16px;
+			}
+
+			.button-result {
+				font-size: 0.9rem;
+				padding: 10px 20px;
+			}
+		}
+	</style>
 </head>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var nivelCells = document.querySelectorAll("td[class^='nivel-']");
+	document.addEventListener("DOMContentLoaded", function () {
+		var nivelCells = document.querySelectorAll("td[class^='nivel-']");
 
-        nivelCells.forEach(function (cell) {
-            var nivel = cell.textContent.trim();
-            if (nivel === "4") {
-                cell.classList.add("nivel-verde");
-            } else if (nivel === "3") {
-                cell.classList.add("nivel-amarillo");
-            } else if (nivel === "2") {
-                cell.classList.add("nivel-azul");
-            } else if (nivel === "1") {
-                cell.classList.add("nivel-rojo");
-            }
-        });
+		nivelCells.forEach(function (cell) {
+			var nivel = cell.textContent.trim();
+			if (nivel === "4") {
+				cell.style.backgroundColor = "";
+			} else if (nivel === "3") {
+				cell.style.backgroundColor = "";
+			} else if (nivel === "2") {
+				cell.style.backgroundColor = "";
+			} else if (nivel === "1") {
+				cell.style.backgroundColor = "";
+			}
+		});
+	});
+</script>
+<script>
+	function calcularNivel(puntaje) {
+		if (puntaje == 0) {
+			return 0;
+		} else {
+			return "N/A";
+		}
+	}
+</script>
+<script>
+	function calcularNivel(puntaje) {
+		if (puntaje >= 191 && puntaje <= 300) {
+			return 4;
+		} else if (puntaje >= 156 && puntaje <= 190) {
+			return 3;
+		} else if (puntaje >= 126 && puntaje <= 155) {
+			return 2;
+		} else if (puntaje > 0 && puntaje <= 125) {
+			return 1;
+		} else if (puntaje == 0) {
+			return 0;
+		} else {
+			return "N/A";
+		}
+	}
 
-        var rows = document.querySelectorAll("table tbody tr");
-        rows.forEach(function (row) {
-            var anuladoCell = row.querySelector("td:nth-child(3)");
-            if (anuladoCell.textContent.trim().toLowerCase() === "si") {
-                row.style.backgroundColor = "#FF8A81";
-            }
-        });
-    });
+	function calcularIngles(puntaje) {
+		if (puntaje >= 191 && puntaje <= 300) {
+			return "B2";
+		} else if (puntaje >= 156 && puntaje <= 190) {
+			return "B1";
+		} else if (puntaje >= 140 && puntaje <= 155) {
+			return "A2";
+		} else if (puntaje >= 125 && puntaje <= 140) {
+			return "A1";
+		} else if (puntaje >= 0 && puntaje <= 125) {
+			return "A0";
+		} else {
+			return "N/A";
+		}
+	}
 
-    function calcularNivel(puntaje) {
-        if (puntaje >= 191 && puntaje <= 300) {
-            return 4;
-        } else if (puntaje >= 156 && puntaje <= 190) {
-            return 3;
-        } else if (puntaje >= 126 && puntaje <= 155) {
-            return 2;
-        } else if (puntaje > 0 && puntaje <= 125) {
-            return 1;
-        } else if (puntaje == 0) {
-            return 0;
-        } else {
-            return "N/A";
-        }
-    }
-
-    function calcularIngles(puntaje) {
-        if (puntaje >= 191 && puntaje <= 300) {
-            return "B2";
-        } else if (puntaje >= 156 && puntaje <= 190) {
-            return "B1";
-        } else if (puntaje >= 140 && puntaje <= 155) {
-            return "A2";
-        } else if (puntaje >= 125 && puntaje <= 140) {
-            return "A1";
-        } else if (puntaje >= 0 && puntaje <= 125) {
-            return "A0";
-        } else {
-            return "N/A";
-        }
-    }
 </script>
 
 <body>
-    <main>
-        <div class="text-center">
-            <h1 class="display-4 fw-bold text-primary mb-4">Puntajes</h1>
-        </div>
-        <div class="container" style="overflow-x: auto;">
-            <table class="custom-table table-striped">
-                <thead style="background-color: blue; color: white;">
-                    <tr>
-                        <th>Cédula</th>
-                        <th>Número Registro</th>
-                        <th>Anulado</th>
-                        <th>Puntaje Total</th>
-                        <th>Nivel Puntaje Total</th>
-                        <th>Comunicación Escrita</th>
-                        <th>Nivel Comunicación Escrita</th>
-                        <th>Razonamiento Cuantitativo</th>
-                        <th>Nivel Razonamiento Cuantitativo</th>
-                        <th>Lectura Crítica</th>
-                        <th>Nivel Lectura Crítica</th>
-                        <th>Competencias Ciudadanas</th>
-                        <th>Nivel Competencias Ciudadanas</th>
-                        <th>Inglés</th>
-                        <th>Nivel Inglés</th>
-                        <th>Formulación Proyectos</th>
-                        <th>Nivel Formulación Proyectos</th>
-                        <th>Pensamiento Científico</th>
-                        <th>Nivel Pensamiento Científico</th>
-                        <th>Diseño de Software</th>
-                        <th>Nivel Diseño de Software</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="calificacion : ${calificaciones}">
-                        <td>[[${calificacion.estudiante.numeroDocumento}]]</td>
-                        <td>[[${calificacion.estudiante.numeroRegistro}]]</td>
-                        <td>[[${calificacion.anulado}]]</td>
-                        <td th:text="${calificacion.puntajeTotal}"></td>
-                        <td th:text="${calificacion.puntajeTotal}"></td>
-                        <td th:text="${calificacion.comEscrita}"></td>
-                        <td th:text="${calificacion.comEscrita}"></td>
-                        <td th:text="${calificacion.razonCuantitativo}"></td>
-                        <td th:text="${calificacion.razonCuantitativo}"></td>
-                        <td th:text="${calificacion.lecturaCritica}"></td>
-                        <td th:text="${calificacion.lecturaCritica}"></td>
-                        <td th:text="${calificacion.compeCiudadanas}"></td>
-                        <td th:text="${calificacion.compeCiudadanas}"></td>
-                        <td th:text="${calificacion.ingles}"></td>
-                        <td th:text="${calificacion.ingles}"></td>
-                        <td th:text="${calificacion.formProyectos}"></td>
-                        <td th:text="${calificacion.formProyectos}"></td>
-                        <td th:text="${calificacion.penCientifico}"></td>
-                        <td th:text="${calificacion.penCientifico}"></td>
-                        <td th:text="${calificacion.disenoSoftware}"></td>
-                        <td th:text="${calificacion.disenoSoftware}"></td>
-                        <td>
-                            <a class="btn btn-warning"
-                               th:href="@{/calificaciones/edit/{id}(id=${calificacion.id})}">
-                                Editar
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger"
-                               th:href="@{/calificaciones/delete/{id}(id=${calificacion.id})}"
-                               onclick="return confirm('¿Estás seguro de que deseas eliminar esta calificación?');">
-                                Eliminar
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="text-center mt-4">
-            <a href="javascript:history.back()" class="btn btn-secondary">Volver</a> <!-- Botón "Volver" agregado -->
-        </div>
-    </main>
+	<main>
+		<div class="text-center">
+			<h1>Puntajes</h1>
+		</div>
+		<div class="container">
+			<div class="table-container">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Cédula</th>
+							<th>Número Registro</th>
+							<th>Anulado</th>
+							<th>Puntaje Total</th>
+							<th>Nivel Puntaje Total</th>
+							<th>Comunicación Escrita</th>
+							<th>Nivel Comunicación Escrita</th>
+							<th>Razonamiento Cuantitativo</th>
+							<th>Nivel Razonamiento Cuantitativo</th>
+							<th>Lectura Crítica</th>
+							<th>Nivel Lectura Crítica</th>
+							<th>Competencias Ciudadanas</th>
+							<th>Nivel Competencias Ciudadanas</th>
+							<th>Inglés</th>
+							<th>Nivel Inglés</th>
+							<th>Formulación Proyectos</th>
+							<th>Nivel Formulación Proyectos</th>
+							<th>Pensamiento Científico</th>
+							<th>Nivel Pensamiento Científico</th>
+							<th>Diseño de Software</th>
+							<th>Nivel Diseño de Software</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="calificacion : ${calificaciones}">
+							<td>[[${calificacion.estudiante.numeroDocumento}]]</td>
+							<td>[[${calificacion.estudiante.numeroRegistro}]]</td>
+							<td>[[${calificacion.anulado}]]</td>
+							<td th:text="${calificacion.puntajeTotal}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0;
+									var nivel3 = calcularNivel(puntaje3);
+									document.write('<span class="nivel-' + nivel3 + '">' + nivel3 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.comEscrita}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje2 = /*[(${calificacion.comEscrita} == 'N/A' ? 0 : ${calificacion.comEscrita})]*/ 0;
+									var nivel2 = calcularNivel(puntaje2);
+									document.write('<span class="nivel-' + nivel2 + '">' + nivel2 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.razonCuantitativo}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0;
+									var nivel3 = calcularNivel(puntaje3);
+									document.write('<span class="nivel-' + nivel3 + '">' + nivel3 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.lecturaCritica}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje4 = /*[(${calificacion.lecturaCritica} == 'N/A' ? 0 : ${calificacion.lecturaCritica})]*/ 0;
+									var nivel4 = calcularNivel(puntaje4);
+									document.write('<span class="nivel-' + nivel4 + '">' + nivel4 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.compeCiudadanas}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje5 = /*[(${calificacion.compeCiudadanas} == 'N/A' ? 0 : ${calificacion.compeCiudadanas})]*/ 0;
+									var nivel5 = calcularNivel(puntaje5);
+									document.write('<span class="nivel-' + nivel5 + '">' + nivel5 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.ingles}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0;
+									var nivel = calcularIngles(puntaje6);
+									var nivel6 = calcularNivel(puntaje6);
+									document.write('<span class="nivel-' + nivel + '">' + nivel + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.formProyectos}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje7 = /*[(${calificacion.formProyectos} == 'N/A' ? 0 : ${calificacion.formProyectos})]*/ 0;
+									var nivel7 = calcularNivel(puntaje7);
+									document.write('<span class="nivel-' + nivel7 + '">' + nivel7 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.penCientifico}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje8 = /*[(${calificacion.penCientifico} == 'N/A' ? 0 : ${calificacion.penCientifico})]*/ 0;
+									var nivel8 = calcularNivel(puntaje8);
+									document.write('<span class="nivel-' + nivel8 + '">' + nivel8 + '</span>');
+								</script>
+							</td>
+							<td th:text="${calificacion.disenoSoftware}"></td>
+							<td th:inline="javascript"
+								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+								<script>
+									var puntaje9 = /*[(${calificacion.disenoSoftware} == 'N/A' ? 0 : ${calificacion.disenoSoftware})]*/ 0;
+									var nivel9 = calcularNivel(puntaje9);
+									document.write('<span class="nivel-' + nivel9 + '">' + nivel9 + '</span>');
+								</script>
+							</td>
+							<td>
+								<a class="btn btn-warning"
+									th:href="@{/calificaciones/edit/{id}(id=${calificacion.id})}">
+									Editar
+								</a>
+							</td>
+							<td>
+								<a class="btn btn-danger"
+									th:href="@{/calificaciones/delete/{id}(id=${calificacion.id})}"
+									onclick="return confirm('¿Estás seguro de que deseas eliminar esta calificación?');">
+									Eliminar
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+	</main>
+	<div class="text-center">
+		<a href="javascript:history.back()" class="btn btn-secondary"
+			style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+			Volver
+		</a>
+	</div>
+
 </body>
 
 </html>

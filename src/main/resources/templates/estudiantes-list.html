@@ -4,153 +4,258 @@
 <head>
 	<title>Estudiantes</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Favicon -->
+	<!-- FAVICON -->
 	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/6854/6854590.png" type="image/x-icon">
 
-	<!-- Fuente -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
 
 	<style>
-		@charset "ISO-8859-1";
-
-		/* Estilos para la barra de navegación superior de color azul */
-		.navbar-superior {
-			background-color: #004899;
+		body {
+			font-family: 'Roboto Slab', serif;
+			background-color: #f5f5f5;
+			margin: 0;
+			padding: 0;
 		}
 
-		/* Estilos para la barra de navegación principal */
-		.navbar-principal {
-			background: #ffffff;
-			border-bottom: 5px solid black;
+		header {
+			background-color: #343a40;
+			padding: 10px;
 		}
 
-		/* Estilos para el botón de "Iniciar sesión" */
-		.button_cerrar {
-			background-color: #C22730;
-			/* Color inicial */
-			border: none;
-			padding: 5px 10px;
-			cursor: pointer;
-			border-radius: 20px;
-			/* Redondear el botón */
-			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-			/* Agregar sombra */
-		}
-
-		.button_cerrar:hover {
-			background-color: blue;
-			/* Color al hacer hover */
-		}
-
-		.button_cerrar a {
+		header nav .button_cerrar {
+			background-color: #28a745;
 			color: white;
-			/* Color del texto */
+			border: none;
+			padding: 12px 20px;
+			border-radius: 5px;
+			font-weight: bold;
+			font-size: 16px;
+		}
+
+		header nav .button_cerrar:hover {
+			background-color: #218838;
+		}
+
+		h1 {
+			font-family: 'Righteous', sans-serif;
+			text-align: center;
+			margin: 20px 0;
+			color: #0056b3;
+			font-size: 2rem;
+		}
+
+		/* Formulario y tablas */
+		.table-container {
+			max-width: 100%;
+			overflow-x: auto;
+			margin: 20px 0;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+			background-color: white;
+			padding: 20px;
+		}
+
+		table {
+			width: 100%;
+			text-align: center;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			border: 1px solid #ddd;
+			padding: 16px;
+			font-size: 18px;
+		}
+
+		th {
+			background-color: #007bff;
+			/* Color de fondo azul */
+			color: rgb(0, 0, 0);
+			/* Color de texto blanco */
+			font-weight: bold;
+			/* Asegura que el texto sea más notorio */
+		}
+
+		td {
+			color: #333;
+		}
+
+		input[type="text"],
+		input[type="number"],
+		select {
+			color: black !important;
+			/* Asegura que el texto siempre sea visible */
+		}
+
+		input[type="text"]:focus,
+		input[type="number"]:focus,
+		select:focus {
+			outline: none;
+			box-shadow: 0 0 5px #007bff;
+		}
+
+		/* Botón Resultado Detallado */
+		.button-result {
+			display: inline-block;
+			padding: 15px 30px;
+			background-color: #007bff;
+			color: white;
 			text-decoration: none;
-			/* Quitar subrayado */
+			border-radius: 8px;
+			margin-top: 30px;
+			font-size: 1.2rem;
+			transition: background-color 0.3s ease;
+			border: none;
+			/* Quitar borde */
 		}
 
-		.separador {
-			border: 1px solid red;
-			/* Línea de color rojo */
-			margin-top: 0;
-			margin-bottom: 0;
+		.button-result:hover {
+
+			box-shadow: 0 4px 8px rgb(255, 255, 255);
+			/* Añadir sombra en hover */
 		}
 
-		.navbar-principal {
-			border-bottom: none;
+		.button-result:focus {
+			outline: none;
+			/* Sin contorno al enfocar */
+			background-color: #007bff;
+			/* Mantener color original al hacer clic */
+		}
+
+		/* Media Queries */
+		@media (max-width: 768px) {
+			h1 {
+				font-size: 1.8rem;
+			}
+
+			th,
+			td {
+				padding: 12px;
+				font-size: 16px;
+			}
+
+			.button_cerrar {
+				font-size: 14px;
+				padding: 10px 18px;
+			}
+
+			.button-result {
+				font-size: 1rem;
+				padding: 12px 24px;
+			}
+		}
+
+		@media (max-width: 576px) {
+			h1 {
+				font-size: 1.5rem;
+			}
+
+			th,
+			td {
+				font-size: 14px;
+			}
+
+			.button_cerrar {
+				font-size: 12px;
+				padding: 8px 16px;
+			}
+
+			.button-result {
+				font-size: 0.9rem;
+				padding: 10px 20px;
+			}
 		}
 	</style>
 
 </head>
+<div class="text-center">
+	<h1>Estudiantes</h1>
+</div>
+<div class="container">
+	<div class="table-container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td><strong>Tipo Documento</strong></td>
+					<td><strong>Documento</strong></td>
+					<td><strong>Primer Apellido</strong></td>
+					<td><strong>Segundo Apellido</strong></td>
+					<td><strong>Primer Nombre</strong></td>
+					<td><strong>Segundo Nombre</strong></td>
+					<td><strong>Correo</strong></td>
+					<td><strong>Teléfono</strong></td>
+					<td><strong>Número Registro</strong></td>
+					<td><strong>Revisado</strong></td>
+					<td><strong>Editar</strong></td>
+					<td><strong>Eliminar</strong></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="estudiante : ${estudiantes}">
+					<td th:text="${estudiante.tipoDocumento}"></td>
+					<td th:text="${estudiante.numeroDocumento}"></td>
+					<td th:text="${estudiante.primerApellido}"></td>
+					<td th:text="${estudiante.segundoApellido}"></td>
+					<td th:text="${estudiante.primerNombre}"></td>
+					<td th:text="${estudiante.segundoNombre}"></td>
+					<td th:text="${estudiante.correo}"></td>
+					<td th:text="${estudiante.telefono}"></td>
+					<td th:text="${estudiante.numeroRegistro}"></td>
+					<td th:text="${estudiante.revisado}"></td>
+					<td>
+						<a class="mx-3 text-success" th:href="@{/estudiantes/edit/{id}(id=${estudiante.id})}">
+							<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<path fill="currentColor"
+									d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
+								</path>
+							</svg>
+						</a>
+					</td>
+					<td>
+						<a class="mx-3 text-danger" th:href="@{/estudiantes/delete/{id}(id=${estudiante.id})}">
+							<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
+								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								class="si-glyph si-glyph-delete">
+								<title>1227</title>
+								<defs>
+								</defs>
+								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<path
+										d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.387,4.956 L3.431,8 L0.387,11.044 C-0.034,11.465 -0.034,12.147 0.388,12.567 L3.432,15.611 C3.852,16.032 4.534,16.032 4.955,15.611 L7.999,12.567 L11.043,15.611 C11.464,16.032 12.146,16.032 12.566,15.611 L15.611,12.567 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 L12.566,8 Z"
+										fill="currentColor" class="si-glyph-fill">
 
-<body>
-	<main>
-		<div class="container">
-			<div class="text-center">
-				<h1 class="display-4 fw-bold text-primary mb-4">Estudiantes</h1>
-			</div>
-
-			<table class="table table-striped"
-				style="border: 2px solid black; background-color:#004899; text-align: left; color: white; padding: 10px; border: 0px solid #ddd;">
-				<thead>
-					<tr style="border: 2px solid black; font-family: 'Roboto Slab', serif; text-align: center" class="">
-						<td><strong>Tipo Documento</strong></td>
-						<td><strong>Documento</strong></td>
-						<td><strong>Primer Apellido</strong></td>
-						<td><strong>Segundo Apellido</strong></td>
-						<td><strong>Primer Nombre</strong></td>
-						<td><strong>Segundo Nombre</strong></td>
-						<td><strong>Correo</strong></td>
-						<td><strong>Teléfono</strong></td>
-						<td><strong>Número Registro</strong></td>
-						<td><strong>Revisado</strong></td>
-						<td><strong>Editar</strong></td>
-						<td><strong>Eliminar</strong></td>
-					</tr>
-				</thead>
-				<tbody
-					style="border: 2px solid black; text-align: center; padding: 8px; border: px solid #ddd; color: white; align-items: center; background-color: rgb(226, 231, 228); color: rgb(0, 0, 0);">
-					<tr th:each="estudiante : ${estudiantes}">
-						<td th:text="${estudiante.tipoDocumento}"></td>
-						<td th:text="${estudiante.numeroDocumento}"></td>
-						<td th:text="${estudiante.primerApellido}"></td>
-						<td th:text="${estudiante.segundoApellido}"></td>
-						<td th:text="${estudiante.primerNombre}"></td>
-						<td th:text="${estudiante.segundoNombre}"></td>
-						<td th:text="${estudiante.correo}"></td>
-						<td th:text="${estudiante.telefono}"></td>
-						<td th:text="${estudiante.numeroRegistro}"></td>
-						<td th:text="${estudiante.revisado}"></td>
-						<td>
-							<a class="mx-3 text-success" th:href="@{/estudiantes/edit/{id}(id=${estudiante.id})}">
-								<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
-									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-									<path fill="currentColor"
-										d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
 									</path>
-								</svg>
-							</a>
-						</td>
-						<td>
-							<a class="mx-3 text-danger" th:href="@{/estudiantes/delete/{id}(id=${estudiante.id})}">
-								<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
-									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-									class="si-glyph si-glyph-delete">
-									<title>1227</title>
-									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-										<path
-											d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.388,4.956 L3.433,8 L0.388,11.044 C-0.034,11.464 -0.034,12.146 0.388,12.566 L3.432,15.611 C3.853,16.031 4.535,16.031 4.955,15.611 L7.999,12.566 L11.044,15.611 C11.464,16.031 12.146,16.031 12.566,15.611 L15.611,12.566 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 Z"
-											fill="currentColor"></path>
-									</g>
-								</svg>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+								</g>
+							</svg>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-			<div style="margin-left: 600px; margin-bottom: 30px;">
-				<a th:href="@{/estudiantes/new}" class="btn btn-primary"
-					style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
-					AGREGAR
-				</a>
-				<a href="javascript:history.back()" class="btn btn-secondary"
-					style="margin-top: 2%; margin-left: 10px; border-radius: 10px;">
-					VOLVER
-				</a>
-			</div>
-		</div>
 	</main>
-</body>
+	<div class="text-center">
+		<a th:href="@{/estudiantes/new}" class="btn btn-primary"
+			style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+			Agregar
+		</a>
+		<a href="javascript:history.back()" class="btn btn-secondary"
+			style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+			Volver
+		</a>
+	</div>
+
+	</body>
 
 </html>
