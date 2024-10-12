@@ -1,7 +1,5 @@
 package com.SaberPro.app.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +14,10 @@ import com.SaberPro.app.entidades.Coordinador;
 import com.SaberPro.app.exception.NotFoundException;
 import com.SaberPro.app.repository.CoordinadorRepository;
 
-
-
-@Controller 
+@Controller
 @RequestMapping("/coordinadores")
 public class CoordinadorWebController {
-	
+
 	@Autowired
 	private CoordinadorRepository coordinadorRepository;
 
@@ -39,27 +35,21 @@ public class CoordinadorWebController {
 
 	@GetMapping("/edit/{id}")
 	public String CoordinadorEditTemplate(@PathVariable("id") String id, Model model) {
-		model.addAttribute("coordinador", coordinadorRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Coordinador no encontrado")));
+		// Verificar que el coordinador exista
+		Coordinador coordinador = coordinadorRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Coordinador no encontrado"));
+		model.addAttribute("coordinador", coordinador);
 		return "coordinadores-form";
 	}
 
 	@PostMapping("/save")
-	public String coordinadoresSaveProcess(@ModelAttribute("usuario") Coordinador coordinador) {
-		if (coordinador.getId().isEmpty()) {
+	public String coordinadoresSaveProcess(@ModelAttribute("coordinador") Coordinador coordinador) {
+		// Verifica si el ID es nulo
+		if (coordinador.getId() == null) {
 			coordinador.setId(null);
 		}
 		coordinadorRepository.save(coordinador);
-		return "redirect:/home/";
-	}
-
-	@PostMapping("/salvar")
-	public String CoordinadoresSalvarProcess(@ModelAttribute("usuario") Coordinador coordinador) {
-		if (coordinador.getId().isEmpty()) {
-			coordinador.setId(null);
-		}
-		coordinadorRepository.save(coordinador);
-		return "redirect:/coordinadores/";
+		return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
 	}
 
 	@GetMapping("/delete/{id}")
@@ -74,25 +64,21 @@ public class CoordinadorWebController {
 		return "registro-coordinador";
 	}
 
-
 	@PostMapping("/ingresar")
 	public String login(@RequestParam("user") String user, @RequestParam("password") String password, Model model) {
 		// Verificar las credenciales
 		System.out.println("Usuario: " + user + " Password:" + password);
 
-		List<Coordinador> coordinadorList = coordinadorRepository.findAll();
-		System.out.println(coordinadorList.get(0).getUser());
 		Coordinador coordinador = coordinadorRepository.findByUserAndPassword(user, password);
 		if (coordinador != null) {
 			// Inicio de sesión exitoso, redirigir a la página de inicio
 			System.out.println("Usuario: " + coordinador.getUser() + " Password:" + coordinador.getPassword());
-			return "home"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
+			return "home"; // Nombre de la página de inicio
 		} else {
-			// Inicio de sesión fallido, mostrar mensaje de error en la página de inicio
+			// Inicio de sesión fallido
 			model.addAttribute("authenticationFailed", true);
 			model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
 			return "login-general";
 		}
 	}
-
 }
