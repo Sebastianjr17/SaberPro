@@ -183,15 +183,16 @@
 			nivelCells.forEach(function (cell) {
 				var nivel = cell.textContent.trim();
 				if (nivel === "4") {
-					cell.style.backgroundColor = "";
+					cell.style.backgroundColor = "green"; // Add a color for nivel 4
 				} else if (nivel === "3") {
-					cell.style.backgroundColor = "";
+					cell.style.backgroundColor = "yellow"; // Add a color for nivel 3
 				} else if (nivel === "2") {
-					cell.style.backgroundColor = "";
+					cell.style.backgroundColor = "orange"; // Add a color for nivel 2
 				} else if (nivel === "1") {
-					cell.style.backgroundColor = "";
+					cell.style.backgroundColor = "red"; // Add a color for nivel 1
 				}
 			});
+
 		});
 	</script>
 	<script>
