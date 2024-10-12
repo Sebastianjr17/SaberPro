@@ -38,11 +38,12 @@ public class CalificacionWebController {
 
 	@GetMapping("/new")
 	public String calificacionesNewTemplate(Model model, Model estudianteModel) {
-		List<Estudiante> estudiantes = estudianteRepository.findAll();
-		estudianteModel.addAttribute("estudiantes", estudiantes);
-		model.addAttribute("calificacion", new Calificacion());
-		return "calificaciones-form";
+	    List<Estudiante> estudiantes = estudianteRepository.findAll();
+	    estudianteModel.addAttribute("estudiantes", estudiantes);
+	    model.addAttribute("calificacion", new Calificacion());
+	    return "calificaciones-form";
 	}
+
 
 	@GetMapping("/edit/{id}")
 	public String calificacionEditTemplate(@PathVariable("id") String id, Model model, Model estudianteModel) {
