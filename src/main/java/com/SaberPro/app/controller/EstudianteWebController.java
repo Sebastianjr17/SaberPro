@@ -106,7 +106,7 @@ public class EstudianteWebController {
 			throw new NotFoundException("Estudiante no encontrado");
 		}
 		model.addAttribute("calificacion", calificacionRepository.findByEstudiante(estudiante));
-		estudiante.setRevisado("si");
+		estudiante.setRevisado("SI");
 		estudianteRepository.save(estudiante);
 		return "estudiante_menu"; 
 	}
