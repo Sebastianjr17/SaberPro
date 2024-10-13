@@ -96,7 +96,8 @@
     <div class="container">
         <div class="form-container">
             <h2 class="form-title">Formulario de Coordinador</h2>
-            <form th:action="@{/coordinadores/save}" method="post">
+			<form th:action="@{/coordinadores/save}" th:object="${coordinador}" method="post" class="formulario">
+				<input type="hidden" th:field="*{id}">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" th:value="${coordinador.nombre}" required>
