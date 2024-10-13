@@ -56,6 +56,7 @@
 		.table-container {
 			max-width: 100%;
 			overflow-x: auto;
+			/* Enable horizontal scrolling */
 			margin: 20px 0;
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 			border-radius: 10px;
@@ -78,11 +79,8 @@
 
 		th {
 			background-color: #007bff;
-			/* Color de fondo azul */
 			color: rgb(0, 0, 0);
-			/* Color de texto blanco */
 			font-weight: bold;
-			/* Asegura que el texto sea más notorio */
 		}
 
 		td {
@@ -93,7 +91,7 @@
 		input[type="number"],
 		select {
 			color: black !important;
-			/* Asegura que el texto siempre sea visible */
+			/* Ensure text is visible */
 		}
 
 		input[type="text"]:focus,
@@ -115,20 +113,19 @@
 			font-size: 1.2rem;
 			transition: background-color 0.3s ease;
 			border: none;
-			/* Quitar borde */
+			/* Remove border */
 		}
 
 		.button-result:hover {
-
 			box-shadow: 0 4px 8px rgb(255, 255, 255);
-			/* Añadir sombra en hover */
+			/* Add shadow on hover */
 		}
 
 		.button-result:focus {
 			outline: none;
-			/* Sin contorno al enfocar */
+			/* Remove outline on focus */
 			background-color: #007bff;
-			/* Mantener color original al hacer clic */
+			/* Keep original color on click */
 		}
 
 		/* Media Queries */
@@ -175,80 +172,75 @@
 			}
 		}
 	</style>
-
 </head>
-<div class="text-center">
-	<h1>Coordinadores</h1>
-</div>
-<div class="container">
-	<div class="table-container">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<td><strong>Nombre</strong></td>
-					<td><strong>Apellidos</strong></td>
-					<td><strong>Documento</strong></td>
-					<td><strong>Celular</strong></td>
-					<td><strong>Usuario</strong></td>
-					<td><strong>Clave</strong></td>
-					<td><strong>Editar</strong></td>
-					<td><strong>Eliminar</strong></td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="coordinador : ${coordinadores}">
-					<td>[[ ${coordinador.nombre} ]]</td>
-					<td>[[ ${coordinador.apellidos} ]]</td>
-					<td>[[ ${coordinador.documento} ]]</td>
-					<td>[[ ${coordinador.celular} ]]</td>
-					<td>[[ ${coordinador.user} ]]</td>
-					<td>[[ ${coordinador.password} ]]</td>
-					<td>
-						<a class="mx-3 text-success" th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
-							<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
-								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-								<path fill="currentColor"
-									d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
-								</path>
-							</svg>
-						</a>
-					</td>
-					<td>
-						<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}">
-							<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
-								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-								class="si-glyph si-glyph-delete">
-								<title>1227</title>
-								<defs>
-								</defs>
-								<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-									<path
-										d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.387,4.956 L3.431,8 L0.387,11.044 C-0.034,11.465 -0.034,12.147 0.388,12.567 L3.432,15.611 C3.852,16.032 4.534,16.032 4.955,15.611 L7.999,12.567 L11.043,15.611 C11.464,16.032 12.146,16.032 12.566,15.611 L15.611,12.567 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 L12.566,8 Z"
-										fill="currentColor" class="si-glyph-fill">
 
-									</path>
-								</g>
-							</svg>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	</main>
-
+<body>
 	<div class="text-center">
-		<a th:href="@{/coordinadores/new}" class="btn btn-primary"
-			style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
-			Agregar
-		</a>
-		<a href="javascript:history.back()" class="btn btn-secondary"
-			style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
-			Volver
-		</a>
+		<h1>Coordinadores</h1>
 	</div>
+	<div class="container">
+		<div class="table-container">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellidos</th>
+						<th>Documento</th>
+						<th>Celular</th>
+						<th>Usuario</th>
+						<th>Clave</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="coordinador : ${coordinadores}">
+						<td>[[ ${coordinador.nombre} ]]</td>
+						<td>[[ ${coordinador.apellidos} ]]</td>
+						<td>[[ ${coordinador.documento} ]]</td>
+						<td>[[ ${coordinador.celular} ]]</td>
+						<td>[[ ${coordinador.user} ]]</td>
+						<td>[[ ${coordinador.password} ]]</td>
+						<td>
+							<a class="mx-3 text-success" th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
+								<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path fill="currentColor"
+										d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
+									</path>
+								</svg>
+							</a>
+						</td>
+						<td>
+							<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}">
+								<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+									class="si-glyph si-glyph-delete">
+									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+										<path
+											d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.387,4.956 L3.431,8 L0.387,11.044 C-0.034,11.465 -0.034,12.147 0.388,12.567 L3.432,15.611 C3.852,16.032 4.534,16.032 4.955,15.611 L7.999,12.567 L11.043,15.611 C11.464,16.032 12.146,16.032 12.566,15.611 L15.611,12.567 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 Z"
+											fill="currentColor" class="si-glyph-fill"></path>
+									</g>
+								</svg>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-	</body>
+		<div class="text-center">
+			<a th:href="@{/coordinadores/new}" class="btn btn-primary"
+				style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+				Agregar
+			</a>
+			<a href="javascript:history.back()" class="btn btn-secondary"
+				style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+				Volver
+			</a>
+		</div>
+
+	</div>
+</body>
 
 </html>

@@ -4,6 +4,7 @@
 <head>
 	<title>Formulario Estudiante</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
@@ -34,11 +35,13 @@
 		.form-container {
 			border: 2px solid #007bff;
 			border-radius: 10px;
-			padding: 15px;
+			padding: 20px;
+			/* Consistent padding */
 			background-color: white;
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 			margin-top: 20px;
-			margin-bottom: 20px;
+			margin-bottom: 30px;
+			/* Increased bottom margin for spacing */
 			max-width: 500px;
 			margin-left: auto;
 			margin-right: auto;
@@ -50,22 +53,28 @@
 			margin-bottom: 5px;
 		}
 
-		.button_cerrar,
-		.button_list {
-			background-color: #007bff;
+		.btn {
+			width: 100%;
+			/* Full-width buttons for accessibility */
+			margin-top: 8px;
+			/* Reduced top margin */
+			padding: 10px;
+			/* Uniform padding for buttons */
+		}
+
+		.btn-custom {
+			background-color: #0056b3;
 			color: white;
 			border: none;
 			border-radius: 8px;
-			padding: 8px 12px;
+			padding: 10px 15px;
 			margin: 5px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-			font-size: 0.9rem;
+			font-size: 1rem;
+			width: 100%;
 		}
 
-		.button_cerrar:hover,
-		.button_list:hover {
-			background-color: #0056b3;
+		.btn-custom-secondary {
+			background-color: #ff0000;
 		}
 
 		@media (max-width: 768px) {
@@ -73,10 +82,10 @@
 				font-size: 1.5rem;
 			}
 
-			.button_cerrar,
-			.button_list {
-				font-size: 0.8rem;
-				padding: 6px 10px;
+			.btn-custom,
+			.btn-custom-secondary {
+				font-size: 0.9rem;
+				padding: 8px 10px;
 			}
 		}
 
@@ -85,10 +94,10 @@
 				font-size: 1.2rem;
 			}
 
-			.button_cerrar,
-			.button_list {
-				font-size: 0.7rem;
-				padding: 5px 8px;
+			.btn-custom,
+			.btn-custom-secondary {
+				font-size: 0.8rem;
+				padding: 6px 8px;
 			}
 		}
 	</style>
@@ -97,66 +106,59 @@
 <body>
 	<div class="container">
 		<div class="form-container">
-			<h2 class="form-title">Formulario de Estudiante</h2>
+			<h2 class="form-title">Formulario Estudiante</h2>
 			<form th:action="@{/estudiantes/salvar}" th:object="${estudiante}" method="post" class="formulario">
 				<input type="hidden" th:field="*{id}">
 				<input type="hidden" th:field="*{revisado}" th:value="${no}">
 
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="tipoDocumento">Tipo Documento:</label>
-					<select class="form-control entrada" id="tipoDocumento" th:field="*{tipoDocumento}" required>
+					<select class="form-control" id="tipoDocumento" th:field="*{tipoDocumento}" required>
 						<option value="C.C." selected>C.C.</option>
 						<option value="T.I.">T.I.</option>
 						<option value="Pasaporte">Pasaporte</option>
 						<option value="Cedula Extranjeria">Cédula de Extranjería</option>
 					</select>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="numeroDocumento">Documento:</label>
-					<input type="text" class="form-control entrada" id="numeroDocumento" th:field="*{numeroDocumento}"
-						required>
+					<input type="text" class="form-control" id="numeroDocumento" th:field="*{numeroDocumento}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="primerApellido">Primer Apellido:</label>
-					<input type="text" class="form-control entrada" id="primerApellido" th:field="*{primerApellido}"
-						required>
+					<input type="text" class="form-control" id="primerApellido" th:field="*{primerApellido}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="segundoApellido">Segundo Apellido:</label>
-					<input type="text" class="form-control entrada" id="segundoApellido" th:field="*{segundoApellido}"
-						required>
+					<input type="text" class="form-control" id="segundoApellido" th:field="*{segundoApellido}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="primerNombre">Primer Nombre:</label>
-					<input type="text" class="form-control entrada" id="primerNombre" th:field="*{primerNombre}"
-						required>
+					<input type="text" class="form-control" id="primerNombre" th:field="*{primerNombre}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="segundoNombre">Segundo Nombre:</label>
-					<input type="text" class="form-control entrada" id="segundoNombre" th:field="*{segundoNombre}"
-						required>
+					<input type="text" class="form-control" id="segundoNombre" th:field="*{segundoNombre}">
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="correo">Correo:</label>
-					<input type="email" class="form-control entrada" id="correo" th:field="*{correo}" required>
+					<input type="email" class="form-control" id="correo" th:field="*{correo}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="telefono">Teléfono:</label>
-					<input type="tel" class="form-control entrada" id="telefono" th:field="*{telefono}" required>
+					<input type="tel" class="form-control" id="telefono" th:field="*{telefono}" required>
 				</div>
-				<div class="form-group mb-3">
+				<div class="mb-3">
 					<label for="numeroRegistro">Número de Registro:</label>
-					<input type="text" class="form-control entrada" id="numeroRegistro" th:field="*{numeroRegistro}"
-						required>
+					<input type="text" class="form-control" id="numeroRegistro" th:field="*{numeroRegistro}" required>
 				</div>
-
 				<div class="text-center">
 					<button type="submit" class="btn btn-primary"
-						style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+						style="background-color:#0A0A61; color: aliceblue; border-radius: 10px; border: #00121e;">
 						Guardar
 					</button>
 					<a href="javascript:history.back()" class="btn btn-secondary"
-						style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+						style="background-color:rgb(255, 0, 0); color: aliceblue; border-radius: 10px; border: #00121e;">
 						Volver
 					</a>
 				</div>
