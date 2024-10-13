@@ -290,9 +290,6 @@
 									Ciudadanas</strong></td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Competencias
 									Ciudadanas</strong></td>
-							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Ingles</strong></td>
-							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Ingles</strong>
-							</td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Formulación
 									Proyectos</strong></td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Formulación
@@ -305,6 +302,7 @@
 									Software</strong></td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Diseño de
 									Software</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Ingles</strong></td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Ingles</strong>
 							</td>
 							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Editar</strong></td>
@@ -384,18 +382,6 @@
 							</script>
 
 							<script th:inline="javascript">
-								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
-								var nivel6 = calcularNivel(puntaje6);
-								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + puntaje6 + '</td>');;
-							</script>
-
-							<script th:inline="javascript">
-								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
-								var nivel6 = calcularNivel(puntaje6);
-								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + nivel6 + '</td>');;
-							</script>
-
-							<script th:inline="javascript">
 								var puntaje7 = /*[(${calificacion.formProyectos} == 'N/A' ? 0 : ${calificacion.formProyectos})]*/ 0; // Reemplaza esto con el valor adecuado
 								var nivel7 = calcularNivel(puntaje7);
 								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel7 + '">' + puntaje7 + '</td>');;
@@ -430,13 +416,18 @@
 								var nivel9 = calcularNivel(puntaje9);
 								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel9 + '">' + nivel9 + '</td>');;
 							</script>
-
+							<script th:inline="javascript">
+								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel6 = calcularNivel(puntaje6);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + nivel6 + '</td>');;
+							</script>
 							<script th:inline="javascript">
 								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
 								var nivel = calcularIngles(puntaje6);
 								var nivel6 = calcularNivel(puntaje6);
 								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + nivel + '</td>');;
 							</script>
+
 							</td>
 							<td>
 								<a class="btn btn-warning"
