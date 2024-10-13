@@ -184,23 +184,24 @@
 		nivelCells.forEach(function (cell) {
 			var nivel = cell.textContent.trim();
 			if (nivel === "4") {
-				cell.style.backgroundColor = "green"; // Add a color for nivel 4
+				cell.classList.add("nivel-verde");
 			} else if (nivel === "3") {
-				cell.style.backgroundColor = "yellow"; // Add a color for nivel 3
+				cell.classList.add("nivel-amarillo");
 			} else if (nivel === "2") {
-				cell.style.backgroundColor = "orange"; // Add a color for nivel 2
+				cell.classList.add("nivel-azul");
 			} else if (nivel === "1") {
-				cell.style.backgroundColor = "red"; // Add a color for nivel 1
+				cell.classList.add("nivel-rojo");
 			}
 		});
 	});
 </script>
+
 <script>
 	function calcularNivel(puntaje) {
 		if (puntaje == 0) {
 			return 0;
 		} else {
-			return "N/A";
+			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
 		}
 	}
 </script>
@@ -217,7 +218,7 @@
 		} else if (puntaje == 0) {
 			return 0;
 		} else {
-			return "N/A";
+			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
 		}
 	}
 
@@ -233,10 +234,24 @@
 		} else if (puntaje >= 0 && puntaje <= 125) {
 			return "A0";
 		} else {
-			return "N/A";
+			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
 		}
 	}
 
+</script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var rows = document.querySelectorAll("table tbody tr");
+
+		rows.forEach(function (row) {
+			var anuladoCell = row.querySelector("td:nth-child(3)"); // 3 es el índice de la columna "Anulado"
+
+			if (anuladoCell.textContent.trim().toLowerCase() === "si") {
+				row.style.backgroundColor = "#FF8A81"; // Aplica un fondo rojo a toda la fila
+			}
+		});
+	});
 </script>
 
 <body>
@@ -246,120 +261,181 @@
 		</div>
 		<div class="container">
 			<div class="table-container">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Cédula</th>
-							<th>Número Registro</th>
-							<th>Anulado</th>
-							<th>Puntaje Total</th>
-							<th>Nivel Puntaje Total</th>
-							<th>Comunicación Escrita</th>
-							<th>Nivel Comunicación Escrita</th>
-							<th>Razonamiento Cuantitativo</th>
-							<th>Nivel Razonamiento Cuantitativo</th>
-							<th>Lectura Crítica</th>
-							<th>Nivel Lectura Crítica</th>
-							<th>Competencias Ciudadanas</th>
-							<th>Nivel Competencias Ciudadanas</th>
-							<th>Inglés</th>
-							<th>Nivel Inglés</th>
-							<th>Formulación Proyectos</th>
-							<th>Nivel Formulación Proyectos</th>
-							<th>Pensamiento Científico</th>
-							<th>Nivel Pensamiento Científico</th>
-							<th>Diseño de Software</th>
-							<th>Nivel Diseño de Software</th>
-							<th>Editar</th>
-							<th>Eliminar</th>
+				<table class="custom-table table-striped"
+					style="border: 2px solid black;  text-align: left; color: white; padding: 10px; border: 0px solid #ddd;">
+					<thead style=" background-color:#A1D068;">
+						<tr style="border: 2px solid black; font-family: 'Roboto Slab', serif; text-align: center;" class="">
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Cedula</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Numero Registro</strong>
+							</td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Anulado</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Puntaje Total</strong>
+							</td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Puntaje
+									Total</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Comunicación
+									Escrita</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Comunicación
+									Escrita</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Razonamiento
+									Cuantitativo</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Razonamiento
+									Cuantitativo</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Lectura Critica</strong>
+							</td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Lectura
+									Critica</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Competencias
+									Ciudadanas</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Competencias
+									Ciudadanas</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Ingles</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Ingles</strong>
+							</td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Formulación
+									Proyectos</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Formulación
+									Proyectos</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Pensamiento
+									Científico</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Pensamiento
+									Científico</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Diseño de
+									Software</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Diseño de
+									Software</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Nivel Ingles</strong>
+							</td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Editar</strong></td>
+							<td style="border: 1px solid #000; vertical-align: middle;"><strong>Eliminar</strong></td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr th:each="calificacion : ${calificaciones}">
-							<td>[[${calificacion.estudiante.numeroDocumento}]]</td>
-							<td>[[${calificacion.estudiante.numeroRegistro}]]</td>
-							<td>[[${calificacion.anulado}]]</td>
-							<td th:text="${calificacion.puntajeTotal}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0;
-									var nivel3 = calcularNivel(puntaje3);
-									document.write('<span class="nivel-' + nivel3 + '">' + nivel3 + '</span>');
-								</script>
+					<tbody
+						style="vertical-align: middle; border: 2px solid black; text-align: center;	padding: 8px; border: px solid #ddd; color: white; align-items: center; color: rgb(0, 0, 0);">
+						<tr style="border: 1px solid #000; vertical-align: middle;"
+							th:each="calificacion : ${calificaciones}">
+							<td style="border: 1px solid #000; vertical-align: middle;">[[
+								${calificacion.estudiante.numeroDocumento} ]]</td>
+							<td style="border: 1px solid #000; vertical-align: middle;">[[
+								${calificacion.estudiante.numeroRegistro} ]]</td>
+							<td style="border: 1px solid #000; vertical-align: middle;">[[ ${calificacion.anulado} ]]
 							</td>
-							<td th:text="${calificacion.comEscrita}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje2 = /*[(${calificacion.comEscrita} == 'N/A' ? 0 : ${calificacion.comEscrita})]*/ 0;
-									var nivel2 = calcularNivel(puntaje2);
-									document.write('<span class="nivel-' + nivel2 + '">' + nivel2 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.razonCuantitativo}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0;
-									var nivel3 = calcularNivel(puntaje3);
-									document.write('<span class="nivel-' + nivel3 + '">' + nivel3 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.lecturaCritica}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje4 = /*[(${calificacion.lecturaCritica} == 'N/A' ? 0 : ${calificacion.lecturaCritica})]*/ 0;
-									var nivel4 = calcularNivel(puntaje4);
-									document.write('<span class="nivel-' + nivel4 + '">' + nivel4 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.compeCiudadanas}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje5 = /*[(${calificacion.compeCiudadanas} == 'N/A' ? 0 : ${calificacion.compeCiudadanas})]*/ 0;
-									var nivel5 = calcularNivel(puntaje5);
-									document.write('<span class="nivel-' + nivel5 + '">' + nivel5 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.ingles}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0;
-									var nivel = calcularIngles(puntaje6);
-									var nivel6 = calcularNivel(puntaje6);
-									document.write('<span class="nivel-' + nivel + '">' + nivel + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.formProyectos}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje7 = /*[(${calificacion.formProyectos} == 'N/A' ? 0 : ${calificacion.formProyectos})]*/ 0;
-									var nivel7 = calcularNivel(puntaje7);
-									document.write('<span class="nivel-' + nivel7 + '">' + nivel7 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.penCientifico}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje8 = /*[(${calificacion.penCientifico} == 'N/A' ? 0 : ${calificacion.penCientifico})]*/ 0;
-									var nivel8 = calcularNivel(puntaje8);
-									document.write('<span class="nivel-' + nivel8 + '">' + nivel8 + '</span>');
-								</script>
-							</td>
-							<td th:text="${calificacion.disenoSoftware}"></td>
-							<td th:inline="javascript"
-								style="border: 1px solid #ddd; padding: 8px; text-align: center;">
-								<script>
-									var puntaje9 = /*[(${calificacion.disenoSoftware} == 'N/A' ? 0 : ${calificacion.disenoSoftware})]*/ 0;
-									var nivel9 = calcularNivel(puntaje9);
-									document.write('<span class="nivel-' + nivel9 + '">' + nivel9 + '</span>');
-								</script>
+							<script th:inline="javascript">
+								var puntaje1 = /*[(${calificacion.puntajeTotal} == 'N/A' ? 0 : ${calificacion.puntajeTotal})]*/ 0;
+								var nivel1 = calcularNivel(puntaje1);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel1 + '">' + puntaje1 + '</td>');
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje1 = /*[(${calificacion.puntajeTotal} == 'N/A' ? 0 : ${calificacion.puntajeTotal})]*/ 0;
+								var nivel1 = calcularNivel(puntaje1);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel1 + '">' + nivel1 + '</td>');
+							</script>
+
+
+							<script th:inline="javascript">
+								var puntaje2 = /*[(${calificacion.comEscrita} == 'N/A' ? 0 : ${calificacion.comEscrita})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel2 = calcularNivel(puntaje2);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel2 + '">' + puntaje2 + '</td>');
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje2 = /*[(${calificacion.comEscrita} == 'N/A' ? 0 : ${calificacion.comEscrita})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel2 = calcularNivel(puntaje2);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel2 + '">' + nivel2 + '</td>');
+							</script>
+
+
+							<script th:inline="javascript">
+								var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel3 = calcularNivel(puntaje3);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel3 + '">' + puntaje3 + '</td>');
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje3 = /*[(${calificacion.razonCuantitativo} == 'N/A' ? 0 : ${calificacion.razonCuantitativo})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel3 = calcularNivel(puntaje3);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel3 + '">' + nivel3 + '</td>');
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje4 = /*[(${calificacion.lecturaCritica} == 'N/A' ? 0 : ${calificacion.lecturaCritica})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel4 = calcularNivel(puntaje4);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel4 + '">' + puntaje4 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje4 = /*[(${calificacion.lecturaCritica} == 'N/A' ? 0 : ${calificacion.lecturaCritica})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel4 = calcularNivel(puntaje4);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel4 + '">' + nivel4 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje5 = /*[(${calificacion.compeCiudadanas} == 'N/A' ? 0 : ${calificacion.compeCiudadanas})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel5 = calcularNivel(puntaje5);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel5 + '">' + puntaje5 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje5 = /*[(${calificacion.compeCiudadanas} == 'N/A' ? 0 : ${calificacion.compeCiudadanas})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel5 = calcularNivel(puntaje5);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel5 + '">' + nivel5 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel6 = calcularNivel(puntaje6);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + puntaje6 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel6 = calcularNivel(puntaje6);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + nivel6 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje7 = /*[(${calificacion.formProyectos} == 'N/A' ? 0 : ${calificacion.formProyectos})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel7 = calcularNivel(puntaje7);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel7 + '">' + puntaje7 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje7 = /*[(${calificacion.formProyectos} == 'N/A' ? 0 : ${calificacion.formProyectos})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel7 = calcularNivel(puntaje7);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel7 + '">' + nivel7 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje8 = /*[(${calificacion.penCientifico} == 'N/A' ? 0 : ${calificacion.penCientifico})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel8 = calcularNivel(puntaje8);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel8 + '">' + puntaje8 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje8 = /*[(${calificacion.penCientifico} == 'N/A' ? 0 : ${calificacion.penCientifico})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel8 = calcularNivel(puntaje8);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel8 + '">' + nivel8 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje9 = /*[(${calificacion.disenoSoftware} == 'N/A' ? 0 : ${calificacion.disenoSoftware})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel9 = calcularNivel(puntaje9);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel9 + '">' + puntaje9 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje9 = /*[(${calificacion.disenoSoftware} == 'N/A' ? 0 : ${calificacion.disenoSoftware})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel9 = calcularNivel(puntaje9);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel9 + '">' + nivel9 + '</td>');;
+							</script>
+
+							<script th:inline="javascript">
+								var puntaje6 = /*[(${calificacion.ingles} == 'N/A' ? 0 : ${calificacion.ingles})]*/ 0; // Reemplaza esto con el valor adecuado
+								var nivel = calcularIngles(puntaje6);
+								var nivel6 = calcularNivel(puntaje6);
+								document.write('<td style="border: 1px solid #000; vertical-align: middle;" class="nivel-' + nivel6 + '">' + nivel + '</td>');;
+							</script>
 							</td>
 							<td>
 								<a class="btn btn-warning"
@@ -381,9 +457,9 @@
 	</main>
 	<div class="text-center">
 		<a th:href="@{/calificaciones/new}" class="btn btn-primary"
-					style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  margin-top: 2%; color: aliceblue; font-size: 120%;  border-radius: 10px;  border: #00121e;">
-					AGREGAR
-				</a>
+			style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  margin-top: 2%; color: aliceblue; font-size: 120%;  border-radius: 10px;  border: #00121e;">
+			AGREGAR
+		</a>
 		<a href="javascript:history.back()" class="btn btn-secondary"
 			style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
 			Volver

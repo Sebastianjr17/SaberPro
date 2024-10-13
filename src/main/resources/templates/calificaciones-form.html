@@ -94,7 +94,9 @@
 </head>
 
 <script>
+
 	function calcularPuntajeTotal() {
+		// Obtener referencias a los campos de puntaje
 		var comEscrita = parseInt(document.getElementById('comEscrita').value) || 0;
 		var razonCuantitativo = parseInt(document.getElementById('razonCuantitativo').value) || 0;
 		var lecturaCritica = parseInt(document.getElementById('lecturaCritica').value) || 0;
@@ -104,11 +106,19 @@
 		var penCientifico = parseInt(document.getElementById('penCientifico').value) || 0;
 		var disenoSoftware = parseInt(document.getElementById('disenoSoftware').value) || 0;
 
+		// Calcular el puntaje total como el promedio y redondearlo al entero más cercano
 		var puntajeTotal = Math.round((comEscrita + razonCuantitativo + lecturaCritica + compeCiudadanas + ingles + formProyectos + penCientifico + disenoSoftware) / 8);
+
+		// Actualizar el campo de puntaje total con el resultado
 		document.getElementById('puntajeTotal').value = puntajeTotal;
 	}
 
+
+</script>
+
+<script>
 	function toggleAnulado(checkbox) {
+		// Obtener referencias a los campos
 		var anuladoCheckbox = document.getElementById('anuladoCheckbox');
 		var anuladoHidden = document.getElementById('anuladoHidden');
 		var puntajeTotal = document.getElementById('puntajeTotal');
@@ -121,8 +131,15 @@
 		var penCientifico = document.getElementById('penCientifico');
 		var disenoSoftware = document.getElementById('disenoSoftware');
 
+
+		// Repite el mismo patrón para los demás campos numéricos
+
+		// Verificar el estado del checkbox
 		if (anuladoCheckbox.checked) {
+			// Marcar como anulado
 			anuladoHidden.value = 'si';
+
+			// Establecer 0 en los campos numéricos
 			puntajeTotal.value = '0';
 			comEscrita.value = '0';
 			razonCuantitativo.value = '0';
@@ -132,9 +149,14 @@
 			formProyectos.value = '0';
 			penCientifico.value = '0';
 			disenoSoftware.value = '0';
+			// Repite el mismo patrón para los demás campos numéricos
 		} else {
+			// Si no está marcado, restaurar los valores predeterminados
 			anuladoHidden.value = 'no';
+
 		}
+
+
 	}
 </script>
 
@@ -200,12 +222,12 @@
 					placeholder="Digite el puntaje" required>
 			</div>
 			<div class="text-center">
-				<button type="submit" class="btn btn-primary"
-					style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+				<button class="button" onclick="calcularPuntajeTotal()"
+					style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 100%; border-radius: 10px; border: #00121e; padding: 6px 12px; width: 120px;">
 					Guardar
 				</button>
-				<a href="javascript:history.back()" class="btn btn-secondary"
-					style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+				<a href="javascript:history.back()"
+					style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 100%; border-radius: 10px; border: #00121e; padding: 6px 12px; width: 120px; display: inline-block; text-align: center; text-decoration: none;">
 					Volver
 				</a>
 			</div>
