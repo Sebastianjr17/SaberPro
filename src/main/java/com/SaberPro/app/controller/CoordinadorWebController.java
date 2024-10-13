@@ -24,13 +24,13 @@ public class CoordinadorWebController {
 	@GetMapping("/")
 	public String CoordinadorListTemplate(Model model) {
 		model.addAttribute("coordinadores", coordinadorRepository.findAll());
-		return "coordinadores-list"; // Vista para listar coordinadores
+		return "coordinadores-list";
 	}
 
 	@GetMapping("/new")
 	public String coordinadoresNewTemplate(Model model) {
 		model.addAttribute("coordinador", new Coordinador());
-		return "coordinadores-form"; // Vista para el formulario de nuevo coordinador
+		return "coordinadores-form";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -38,7 +38,7 @@ public class CoordinadorWebController {
 		Coordinador coordinador = coordinadorRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException("Coordinador no encontrado"));
 		model.addAttribute("coordinador", coordinador);
-		return "coordinadores-form"; // Vista para editar coordinador
+		return "coordinadores-form"; 
 	}
 
 	@PostMapping("/save")
@@ -47,30 +47,30 @@ public class CoordinadorWebController {
 			coordinador.setId(null);
 		}
 		coordinadorRepository.save(coordinador);
-		return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
+		return "redirect:/coordinadores/"; 
 	}
 
 	@GetMapping("/delete/{id}")
 	public String coordinadoresDeleteProcess(@PathVariable("id") String id) {
 		coordinadorRepository.deleteById(id);
-		return "redirect:/coordinadores/"; // Redirige a la lista de coordinadores
+		return "redirect:/coordinadores/"; 
 	}
 
 	@GetMapping("/registro")
 	public String registroTemplate(Model model) {
 		model.addAttribute("coordinador", new Coordinador());
-		return "registro-coordinador"; // Vista para el registro de coordinador
+		return "registro-coordinador"; 
 	}
 
 	@PostMapping("/ingresar")
 	public String login(@RequestParam("user") String user, @RequestParam("password") String password, Model model) {
 		Coordinador coordinador = coordinadorRepository.findByUserAndPassword(user, password);
 		if (coordinador != null) {
-			return "home"; // Redirige a la página de inicio si el login es exitoso
+			return "coordinador_menu"; 
 		} else {
 			model.addAttribute("authenticationFailed", true);
 			model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
-			return "login-general"; // Vista para login fallido
+			return "index"; 
 		}
 	}
 }

@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("")
-public class LoginController {
+public class IndexController {
 	
 	@GetMapping("/")
 	public String HomeTemplate(Model model) {
-		return "login-general";
+		return "index";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/index")
 	public String LoginTemplate(Model model) {
-		return "login-general";
+		return "index";
 	}
 
 }

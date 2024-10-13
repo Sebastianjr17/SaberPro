@@ -95,7 +95,7 @@ public class EstudianteWebController {
 		} else {
 			model.addAttribute("authenticationFailed", true);
 			model.addAttribute("errorMessage", "No se encontró ningún estudiante");
-			return "login-general";
+			return "index";
 		}
 	}
 
@@ -108,7 +108,7 @@ public class EstudianteWebController {
 		model.addAttribute("calificacion", calificacionRepository.findByEstudiante(estudiante));
 		estudiante.setRevisado("si");
 		estudianteRepository.save(estudiante);
-		return "resultados-estudiante"; // Ajusta el nombre de la vista según tu configuración
+		return "estudiante_menu"; 
 	}
 
 	@GetMapping("/detallado/{numeroDocumento}")
@@ -118,6 +118,6 @@ public class EstudianteWebController {
 			throw new NotFoundException("Estudiante no encontrado");
 		}
 		model.addAttribute("calificacion", calificacionRepository.findByEstudiante(estudiante));
-		return "resultado-detallado"; // Ajusta el nombre de la vista según tu configuración
+		return "resultado-detallado";
 	}
 }
