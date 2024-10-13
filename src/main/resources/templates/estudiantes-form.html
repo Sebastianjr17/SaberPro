@@ -47,6 +47,7 @@
 		label {
 			font-weight: bold;
 			color: #343a40;
+			margin-bottom: 5px;
 		}
 
 		.button_cerrar,
@@ -101,7 +102,7 @@
 				<input type="hidden" th:field="*{id}">
 				<input type="hidden" th:field="*{revisado}" th:value="${no}">
 
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="tipoDocumento">Tipo Documento:</label>
 					<select class="form-control entrada" id="tipoDocumento" th:field="*{tipoDocumento}" required>
 						<option value="C.C." selected>C.C.</option>
@@ -110,40 +111,40 @@
 						<option value="Cedula Extranjeria">Cédula de Extranjería</option>
 					</select>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="numeroDocumento">Documento:</label>
 					<input type="text" class="form-control entrada" id="numeroDocumento" th:field="*{numeroDocumento}"
 						required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="primerApellido">Primer Apellido:</label>
 					<input type="text" class="form-control entrada" id="primerApellido" th:field="*{primerApellido}"
 						required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="segundoApellido">Segundo Apellido:</label>
 					<input type="text" class="form-control entrada" id="segundoApellido" th:field="*{segundoApellido}"
 						required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="primerNombre">Primer Nombre:</label>
 					<input type="text" class="form-control entrada" id="primerNombre" th:field="*{primerNombre}"
 						required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="segundoNombre">Segundo Nombre:</label>
 					<input type="text" class="form-control entrada" id="segundoNombre" th:field="*{segundoNombre}"
 						required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="correo">Correo:</label>
 					<input type="email" class="form-control entrada" id="correo" th:field="*{correo}" required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="telefono">Teléfono:</label>
 					<input type="tel" class="form-control entrada" id="telefono" th:field="*{telefono}" required>
 				</div>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="numeroRegistro">Número de Registro:</label>
 					<input type="text" class="form-control entrada" id="numeroRegistro" th:field="*{numeroRegistro}"
 						required>
