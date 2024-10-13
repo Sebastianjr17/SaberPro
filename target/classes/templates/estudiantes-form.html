@@ -109,7 +109,7 @@
 			<h2 class="form-title">Formulario Estudiante</h2>
 			<form th:action="@{/estudiantes/salvar}" th:object="${estudiante}" method="post" class="formulario">
 				<input type="hidden" th:field="*{id}">
-				<input type="hidden" th:field="*{revisado}" th:value="${no}">
+				<input type="hidden" th:field="*{revisado}" th:value="${NO}">
 
 				<div class="mb-3">
 					<label for="tipoDocumento">Tipo Documento:</label>

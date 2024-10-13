@@ -52,16 +52,22 @@
 			font-size: 2rem;
 		}
 
-		/* Formulario y tablas */
 		.table-container {
-			max-width: 100%;
-			overflow-x: auto;
-			margin: 20px 0;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-			border-radius: 10px;
-			background-color: white;
-			padding: 20px;
+		    max-width: 100%;
+		    overflow-x: auto;
+		    overflow-y: auto; /* Agregar scroll si la tabla es muy grande */
+		    max-height: 500px; /* Ajusta la altura según sea necesario */
+		    margin: 20px 0;
+		    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		    border-radius: 10px;
+		    background-color: white;
+		    padding: 20px;
 		}
+		
+		.button-container {
+		    margin-top: 20px; /* Espacio entre la tabla y los botones */
+		}
+
 
 		table {
 			width: 100%;
@@ -245,15 +251,15 @@
 	</div>
 
 	</main>
-	<div class="text-center">
-		<a th:href="@{/estudiantes/new}" class="btn btn-primary"
-			style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
-			Agregar
-		</a>
-		<a href="javascript:history.back()" class="btn btn-secondary"
-			style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
-			Volver
-		</a>
+	<div class="button-container text-center">
+	    <a th:href="@{/estudiantes/new}" class="btn btn-primary"
+	        style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+	        Agregar
+	    </a>
+	    <a href="javascript:history.back()" class="btn btn-secondary"
+	        style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+	        Volver
+	    </a>
 	</div>
 
 	</body>
