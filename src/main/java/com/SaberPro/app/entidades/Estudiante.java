@@ -40,11 +40,9 @@ public class Estudiante {
 
 	private String revisado;
 
-	// CONSTRUCTOR
 	public Estudiante() {
 	}
 
-	// METODOS GET y SET
 	public String getId() {
 		return id;
 	}

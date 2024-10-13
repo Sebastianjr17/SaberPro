@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Formulario Calificación</title>
+	<title>Formulario Puntajes</title>
 	<meta charset="utf-8">
 
 	<!-- Bootstrap CSS -->
@@ -47,7 +47,15 @@
 		label {
 			font-weight: bold;
 			color: #343a40;
+			margin-bottom: 5px;
 		}
+
+		.form-control.entrada {
+			padding: 10px;
+			margin-bottom: 15px;
+			border-radius: 5px;
+		}
+
 
 		.button_cerrar,
 		.button_list {
@@ -65,6 +73,51 @@
 		.button_cerrar:hover,
 		.button_list:hover {
 			background-color: #0056b3;
+		}
+
+		.custom-checkbox {
+			position: relative;
+			display: inline-block;
+			width: 50px;
+			height: 26px;
+		}
+
+		.custom-checkbox input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			transition: .4s;
+			border-radius: 15px;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 18px;
+			width: 18px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			transition: .4s;
+			border-radius: 50%;
+		}
+
+		input:checked+.slider {
+			background-color: #007bff;
+		}
+
+		input:checked+.slider:before {
+			transform: translateX(24px);
 		}
 
 		@media (max-width: 768px) {
@@ -96,7 +149,6 @@
 <script>
 
 	function calcularPuntajeTotal() {
-		// Obtener referencias a los campos de puntaje
 		var comEscrita = parseInt(document.getElementById('comEscrita').value) || 0;
 		var razonCuantitativo = parseInt(document.getElementById('razonCuantitativo').value) || 0;
 		var lecturaCritica = parseInt(document.getElementById('lecturaCritica').value) || 0;
@@ -118,7 +170,6 @@
 
 <script>
 	function toggleAnulado(checkbox) {
-		// Obtener referencias a los campos
 		var anuladoCheckbox = document.getElementById('anuladoCheckbox');
 		var anuladoHidden = document.getElementById('anuladoHidden');
 		var puntajeTotal = document.getElementById('puntajeTotal');
@@ -131,15 +182,9 @@
 		var penCientifico = document.getElementById('penCientifico');
 		var disenoSoftware = document.getElementById('disenoSoftware');
 
-
-		// Repite el mismo patrón para los demás campos numéricos
-
-		// Verificar el estado del checkbox
 		if (anuladoCheckbox.checked) {
-			// Marcar como anulado
-			anuladoHidden.value = 'si';
+			anuladoHidden.value = 'SI';
 
-			// Establecer 0 en los campos numéricos
 			puntajeTotal.value = '0';
 			comEscrita.value = '0';
 			razonCuantitativo.value = '0';
@@ -149,77 +194,75 @@
 			formProyectos.value = '0';
 			penCientifico.value = '0';
 			disenoSoftware.value = '0';
-			// Repite el mismo patrón para los demás campos numéricos
 		} else {
-			// Si no está marcado, restaurar los valores predeterminados
-			anuladoHidden.value = 'no';
+			anuladoHidden.value = 'NO';
 
+			puntajeTotal.value = '';
+			comEscrita.value = '';
+			razonCuantitativo.value = '';
+			lecturaCritica.value = '';
+			compeCiudadanas.value = '';
+			ingles.value = '';
+			formProyectos.value = '';
+			penCientifico.value = '';
+			disenoSoftware.value = '';
 		}
-
-
 	}
+
 </script>
 
 <div class="container">
 	<div class="form-container">
-		<h2 class="form-title">Formulario Calificaciones</h2>
+		<h2 class="form-title">Formulario Puntajes</h2>
 		<form th:action="@{/calificaciones/save}" th:object="${calificacion}" method="post" class="formulario">
 			<input type="hidden" th:field="*{id}">
-			<div>
+			<div class="grupo mb-3">
 				<label for="estudiante" class="label">Estudiante:</label>
 				<select id="estudiante" class="form-control entrada" th:field="*{estudiante}">
 					<option th:each="estudiante : ${estudiantes}" th:value="${estudiante.id}"
 						th:text="${estudiante.numeroRegistro}"></option>
 				</select>
 			</div>
-			<div class="grupo">
-				<label for="anulado" class="label">Anulado: </label>
-				<input type="checkbox" id="anuladoCheckbox" onchange="toggleAnulado(this)">
+			<div class="grupo mb-3">
+				<label for="anulado" class="label">Anulado:</label>
+				<label class="custom-checkbox">
+					<input type="checkbox" id="anuladoCheckbox" onchange="toggleAnulado(this)">
+					<span class="slider"></span>
+				</label>
 				<input type="hidden" th:field="*{anulado}" id="anuladoHidden" th:value="${calificacion.anulado}">
 			</div>
 			<div class="mt-0">
 				<input type="text" class="form-control entrada" id="puntajeTotal" th:field="*{puntajeTotal}"
 					placeholder="Puntaje Total" readonly hidden>
 			</div>
-			<div class="grupo">
-				<label for="comEscrita" class="label">Comunicación Escrita: </label>
-				<input type="text" class="form-control entrada" id="comEscrita" th:field="*{comEscrita}"
-					placeholder="Digite el puntaje" required>
+			<div class="grupo mb-3">
+				<label for="comEscrita" class="label">Comunicación Escrita:</label>
+				<input type="text" class="form-control entrada" id="comEscrita" th:field="*{comEscrita}" required>
 			</div>
-			<div class="grupo">
-				<label for="razonCuantitativo" class="label">Razonamiento Cuantitativo: </label>
+			<div class="grupo mb-3"> <label for="razonCuantitativo" class="label">Razonamiento Cuantitativo:</label>
 				<input type="text" class="form-control entrada" id="razonCuantitativo" th:field="*{razonCuantitativo}"
-					placeholder="Digite el puntaje" required>
+					required>
 			</div>
-			<div class="grupo">
-				<label for="lecturaCritica" class="label">Lectura Crítica: </label>
+			<div class="grupo mb-3"> <label for="lecturaCritica" class="label">Lectura Crítica:</label>
 				<input type="text" class="form-control entrada" id="lecturaCritica" th:field="*{lecturaCritica}"
-					placeholder="Digite el puntaje" required>
+					required>
 			</div>
-			<div class="grupo">
-				<label for="compeCiudadanas" class="label">Competencias Ciudadanas: </label>
+			<div class="grupo mb-3"> <label for="compeCiudadanas" class="label">Competencias Ciudadanas:</label>
 				<input type="text" class="form-control entrada" id="compeCiudadanas" th:field="*{compeCiudadanas}"
-					placeholder="Digite el puntaje" required>
+					required>
 			</div>
-			<div class="grupo">
-				<label for="ingles" class="label">Inglés: </label>
-				<input type="text" class="form-control entrada" id="ingles" th:field="*{ingles}"
-					placeholder="Digite el puntaje" required>
+			<div class="grupo mb-3"> <label for="ingles" class="label">Inglés:</label>
+				<input type="text" class="form-control entrada" id="ingles" th:field="*{ingles}" required>
 			</div>
-			<div class="grupo">
-				<label for="formProyectos" class="label">Formulación de Proyectos: </label>
-				<input type="text" class="form-control entrada" id="formProyectos" th:field="*{formProyectos}"
-					placeholder="Digite el puntaje" required>
+			<div class="grupo mb-3"> <label for="formProyectos" class="label">Formulación de Proyectos:</label>
+				<input type="text" class="form-control entrada" id="formProyectos" th:field="*{formProyectos}" required>
 			</div>
-			<div class="grupo">
-				<label for="penCientifico" class="label">Pensamiento Científico: </label>
-				<input type="text" class="form-control entrada" id="penCientifico" th:field="*{penCientifico}"
-					placeholder="Digite el puntaje" required>
+			<div class="grupo mb-3"> <label for="penCientifico" class="label">Pensamiento Científico:</label>
+				<input type="text" class="form-control entrada" id="penCientifico" th:field="*{penCientifico}" required>
 			</div>
-			<div class="grupo">
-				<label for="disenoSoftware" class="label">Diseño de Software: </label>
+			<div class="grupo mb-3"> <label for="disenoSoftware" class="label">Diseño de Software:</label>
 				<input type="text" class="form-control entrada" id="disenoSoftware" th:field="*{disenoSoftware}"
-					placeholder="Digite el puntaje" required>
+					required>
 			</div>
 			<div class="text-center">
 				<button class="button" onclick="calcularPuntajeTotal()"
