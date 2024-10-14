@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Formulario Puntajes</title>
+	<title>Formulario Calificaciones</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -223,7 +223,7 @@
 
 	<div class="container">
 		<div class="form-container">
-			<h2 class="form-title">Formulario Puntajes</h2>
+			<h2 class="form-title">Formulario Calificaciones</h2>
 			<form th:action="@{/calificaciones/save}" th:object="${calificacion}" method="post" class="formulario">
 				<input type="hidden" th:field="*{id}">
 				<div class="mb-3">
