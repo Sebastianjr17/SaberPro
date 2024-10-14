@@ -235,7 +235,7 @@
 			<form th:action="@{/calificaciones/save}" th:object="${calificacion}" method="post" class="formulario">
 				<input type="hidden" th:field="*{id}">
 				<div class="mb-3">
-					<label for="estudiante" class="label">Estudiante:</label>
+					<label for="estudiante" class="label">Número de Registro:</label>
 					<select id="estudiante" class="form-control entrada" th:field="*{estudiante}">
 						<option th:each="estudiante : ${estudiantes}" th:value="${estudiante.id}"
 							th:text="${estudiante.numeroRegistro}"></option>
