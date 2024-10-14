@@ -25,25 +25,6 @@
 			padding: 0;
 		}
 
-		header {
-			background-color: #343a40;
-			padding: 10px;
-		}
-
-		header nav .button_cerrar {
-			background-color: #28a745;
-			color: white;
-			border: none;
-			padding: 12px 20px;
-			border-radius: 5px;
-			font-weight: bold;
-			font-size: 16px;
-		}
-
-		header nav .button_cerrar:hover {
-			background-color: #218838;
-		}
-
 		h1 {
 			font-family: 'Righteous', sans-serif;
 			text-align: center;
@@ -52,15 +33,15 @@
 			font-size: 2rem;
 		}
 
-		/* Formulario y tablas */
+		/* Contenedor de tabla */
 		.table-container {
 			max-width: 100%;
 			overflow-x: auto;
 			margin: 20px 0;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 			border-radius: 10px;
 			background-color: white;
 			padding: 20px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		}
 
 		table {
@@ -72,63 +53,35 @@
 		th,
 		td {
 			border: 1px solid #ddd;
-			padding: 16px;
-			font-size: 18px;
+			padding: 12px;
+			font-size: 16px;
 		}
 
 		th {
-			background-color: #007bff;
-			/* Color de fondo azul */
-			color: rgb(0, 0, 0);
-			/* Color de texto blanco */
+			background-color: #4CAF50;
+			color: white;
 			font-weight: bold;
-			/* Asegura que el texto sea más notorio */
 		}
 
 		td {
 			color: #333;
 		}
 
-		input[type="text"],
-		input[type="number"],
-		select {
-			color: black !important;
-			/* Asegura que el texto siempre sea visible */
-		}
-
-		input[type="text"]:focus,
-		input[type="number"]:focus,
-		select:focus {
-			outline: none;
-			box-shadow: 0 0 5px #007bff;
-		}
-
 		/* Botón Resultado Detallado */
 		.button-result {
 			display: inline-block;
-			padding: 15px 30px;
+			padding: 12px 24px;
 			background-color: #007bff;
 			color: white;
 			text-decoration: none;
 			border-radius: 8px;
-			margin-top: 30px;
-			font-size: 1.2rem;
+			font-size: 1.1rem;
 			transition: background-color 0.3s ease;
 			border: none;
-			/* Quitar borde */
 		}
 
 		.button-result:hover {
-
-			box-shadow: 0 4px 8px rgb(255, 255, 255);
-			/* Añadir sombra en hover */
-		}
-
-		.button-result:focus {
-			outline: none;
-			/* Sin contorno al enfocar */
-			background-color: #007bff;
-			/* Mantener color original al hacer clic */
+			background-color: #0056b3;
 		}
 
 		/* Media Queries */
@@ -139,18 +92,13 @@
 
 			th,
 			td {
-				padding: 12px;
-				font-size: 16px;
-			}
-
-			.button_cerrar {
+				padding: 8px;
 				font-size: 14px;
-				padding: 10px 18px;
 			}
 
 			.button-result {
 				font-size: 1rem;
-				padding: 12px 24px;
+				padding: 10px 20px;
 			}
 		}
 
@@ -161,17 +109,12 @@
 
 			th,
 			td {
-				font-size: 14px;
-			}
-
-			.button_cerrar {
 				font-size: 12px;
-				padding: 8px 16px;
 			}
 
 			.button-result {
 				font-size: 0.9rem;
-				padding: 10px 20px;
+				padding: 8px 16px;
 			}
 		}
 	</style>
@@ -437,16 +380,31 @@
 
 							</td>
 							<td>
-								<a class="btn btn-warning"
+								<a class="mx-3 text-success"
 									th:href="@{/calificaciones/edit/{id}(id=${calificacion.id})}">
-									Editar
+									<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+										xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+										<path fill="currentColor"
+											d="M16 4c0 0 0-1-1-2s-1.9-1-1.9-1l-1.1 1.1v-2.1h-12v16h12v-8l4-4zM6.3 11.4l-0.6-0.6 0.3-1.1 1.5 1.5-1.2 0.2zM7.2 9.5l-0.6-0.6 5.2-5.2c0.2 0.1 0.4 0.3 0.6 0.5zM14.1 2.5l-0.9 1c-0.2-0.2-0.4-0.3-0.6-0.5l0.9-0.9c0.1 0.1 0.3 0.2 0.6 0.4zM11 15h-10v-14h10v2.1l-5.9 5.9-1.1 4.1 4.1-1.1 2.9-3v6z">
+										</path>
+									</svg>
 								</a>
 							</td>
 							<td>
-								<a class="btn btn-danger"
+								<a class="mx-3 text-danger"
 									th:href="@{/calificaciones/delete/{id}(id=${calificacion.id})}"
-									onclick="return confirm('¿Estás seguro de que deseas eliminar esta calificación?');">
-									Eliminar
+									onclick="return confirm('¿Estás seguro de que deseas eliminar este elemento?');">
+									<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
+										xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+										class="si-glyph si-glyph-delete">
+										<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+											<path
+												d="M12.566,8 L15.611,4.956 C16.031,4.535 16.031,3.853 15.611,3.434 L12.566,0.389 C12.146,-0.031 11.464,-0.031 11.043,0.389 L7.999,3.433 L4.955,0.389 C4.534,-0.031 3.852,-0.031 3.432,0.389 L0.388,3.434 C-0.034,3.854 -0.034,4.536 0.387,4.956 L3.431,8 L0.387,11.044 C-0.034,11.465 -0.034,12.147 0.388,12.567 L3.432,15.611 C3.852,16.032 4.534,16.032 4.955,15.611 L7.999,12.567 L11.043,15.611 C11.464,16.032 12.146,16.032 12.566,15.611 L15.611,12.567 C16.031,12.146 16.031,11.464 15.611,11.044 L12.566,8 L12.566,8 Z"
+												fill="currentColor" class="si-glyph-fill">
+
+											</path>
+										</g>
+									</svg>
 								</a>
 							</td>
 						</tr>

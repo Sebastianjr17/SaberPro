@@ -212,7 +212,8 @@
 							</a>
 						</td>
 						<td>
-							<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}">
+							<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}"
+							onclick="return confirm('¿Estás seguro de que deseas eliminar este elemento?');">
 								<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
 									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 									class="si-glyph si-glyph-delete">
