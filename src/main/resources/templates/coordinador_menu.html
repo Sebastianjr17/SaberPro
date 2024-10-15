@@ -56,17 +56,12 @@
 		}
 
 		.table-container {
-			max-width: 600px;
-			/* Set a max-width for the container */
+			max-width: 600px; /* Aumenta el ancho para acomodar más botones */
 			margin: 20px auto;
-			/* Centered container */
 			padding: 20px;
 			display: flex;
-			/* Use flexbox for alignment */
 			flex-direction: column;
-			/* Stack buttons vertically */
 			align-items: center;
-			/* Center buttons horizontally */
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 			border-radius: 10px;
 			background-color: white;
@@ -77,20 +72,15 @@
 			color: white;
 			border: none;
 			border-radius: 5px;
-			padding: 15px 25px;
-			margin: 10px;
-			/* Increased margin for spacing */
+			padding: 20px 35px;
+			margin: 15px;
 			font-size: 18px;
 			transition: background-color 0.3s ease;
 			text-decoration: none;
 			display: flex;
-			/* Flexbox for proper alignment */
 			align-items: center;
-			/* Center icon and text vertically */
 			justify-content: center;
-			/* Center icon and text horizontally */
-			width: 200px;
-			/* Fixed width for uniform button sizes */
+			width: 250px;
 		}
 
 		.button-list:hover {
@@ -101,41 +91,22 @@
 			color: white;
 			text-decoration: none;
 			text-align: center;
-			/* Center text */
 			display: flex;
-			/* Use flexbox to align icon and text */
 			align-items: center;
-			/* Center icon and text vertically */
 		}
 
 		.button-list i {
-			margin-right: 8px;
-			/* Add space between icon and text */
+			margin-right: 10px;
 		}
 
-		/* Pyramid Layout */
 		.button-container {
 			display: flex;
-			flex-direction: column;
+			flex-direction: row; /* Cambiado a fila */
+			justify-content: space-around; /* Espaciado entre los botones */
 			align-items: center;
+			flex-wrap: wrap; /* Permitir que los botones se ajusten */
 		}
 
-		.button-row {
-			display: flex;
-			justify-content: center;
-		}
-
-		.button-row:nth-child(1) {
-			margin-bottom: 10px;
-			/* Space between levels */
-		}
-
-		.button-row:nth-child(2) {
-			margin-bottom: 10px;
-			/* Space between levels */
-		}
-
-		/* Media Queries */
 		@media (max-width: 768px) {
 			h1 {
 				font-size: 2rem;
@@ -143,31 +114,26 @@
 
 			.button-list {
 				font-size: 16px;
-				padding: 12px 20px;
-				width: 150px;
-				/* Adjust width for smaller screens */
+				padding: 15px 25px;
+				width: 200px;
 			}
 		}
 
 		@media (max-width: 576px) {
 			h1 {
-				font-size: 1.8rem;
+				font-size: 1.5rem;
 			}
 
 			.button-list {
 				font-size: 14px;
-				padding: 10px 18px;
-				margin: 5px;
-				/* Reduce margin for smaller screens */
-				width: 120px;
-				/* Adjust width for smaller screens */
+				padding: 12px 20px;
+				margin: 8px;
+				width: 150px;
 			}
 
 			.table-container {
 				padding: 10px;
-				/* Decrease padding for smaller screens */
 				margin: 10px;
-				/* Add margin for mobile view */
 			}
 		}
 	</style>
@@ -192,24 +158,18 @@
 		</div>
 		<div class="table-container">
 			<div class="button-container">
-				<div class="button-row">
-					<button class="button-list">
-						<i class="fas fa-user-friends"></i>
-						<a href="/coordinadores/">Coordinadores</a>
-					</button>
-				</div>
-				<div class="button-row">
-					<button class="button-list">
-						<i class="fas fa-user-graduate"></i>
-						<a href="/estudiantes/">Estudiantes</a>
-					</button>
-				</div>
-				<div class="button-row">
-					<button class="button-list">
-						<i class="fas fa-chart-line"></i>
-						<a href="/calificaciones/">Calificaciones</a>
-					</button>
-				</div>
+				<button class="button-list">
+					<i class="fas fa-user-friends"></i>
+					<a href="/coordinadores/">Coordinadores</a>
+				</button>
+				<button class="button-list">
+					<i class="fas fa-user-graduate"></i>
+					<a href="/estudiantes/">Estudiantes</a>
+				</button>
+				<button class="button-list">
+					<i class="fas fa-chart-line"></i>
+					<a href="/calificaciones/">Calificaciones</a>
+				</button>
 			</div>
 		</div>
 	</main>
