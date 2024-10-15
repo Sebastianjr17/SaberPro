@@ -38,8 +38,7 @@
 			text-align: center;
 			margin: 20px 0;
 			color: #0056b3;
-			font-size: 2.5rem;
-			/* Aumenta el tamaño del encabezado */
+			font-size: 2rem;
 		}
 
 		.button_cerrar {
@@ -57,13 +56,20 @@
 		}
 
 		.table-container {
-			max-width: 100%;
-			overflow-x: auto;
-			margin: 20px 0;
+			max-width: 600px;
+			/* Set a max-width for the container */
+			margin: 20px auto;
+			/* Centered container */
+			padding: 20px;
+			display: flex;
+			/* Use flexbox for alignment */
+			flex-direction: column;
+			/* Stack buttons vertically */
+			align-items: center;
+			/* Center buttons horizontally */
 			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 			border-radius: 10px;
 			background-color: white;
-			padding: 20px;
 		}
 
 		.button-list {
@@ -72,12 +78,19 @@
 			border: none;
 			border-radius: 5px;
 			padding: 15px 25px;
-			/* Aumentar tamaño de botones */
 			margin: 10px;
+			/* Increased margin for spacing */
 			font-size: 18px;
-			/* Aumentar tamaño del texto */
 			transition: background-color 0.3s ease;
 			text-decoration: none;
+			display: flex;
+			/* Flexbox for proper alignment */
+			align-items: center;
+			/* Center icon and text vertically */
+			justify-content: center;
+			/* Center icon and text horizontally */
+			width: 200px;
+			/* Fixed width for uniform button sizes */
 		}
 
 		.button-list:hover {
@@ -87,6 +100,39 @@
 		.button-list a {
 			color: white;
 			text-decoration: none;
+			text-align: center;
+			/* Center text */
+			display: flex;
+			/* Use flexbox to align icon and text */
+			align-items: center;
+			/* Center icon and text vertically */
+		}
+
+		.button-list i {
+			margin-right: 8px;
+			/* Add space between icon and text */
+		}
+
+		/* Pyramid Layout */
+		.button-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.button-row {
+			display: flex;
+			justify-content: center;
+		}
+
+		.button-row:nth-child(1) {
+			margin-bottom: 10px;
+			/* Space between levels */
+		}
+
+		.button-row:nth-child(2) {
+			margin-bottom: 10px;
+			/* Space between levels */
 		}
 
 		/* Media Queries */
@@ -95,9 +141,11 @@
 				font-size: 2rem;
 			}
 
-			.button_list {
+			.button-list {
 				font-size: 16px;
 				padding: 12px 20px;
+				width: 150px;
+				/* Adjust width for smaller screens */
 			}
 		}
 
@@ -106,9 +154,20 @@
 				font-size: 1.8rem;
 			}
 
-			.button_list {
+			.button-list {
 				font-size: 14px;
 				padding: 10px 18px;
+				margin: 5px;
+				/* Reduce margin for smaller screens */
+				width: 120px;
+				/* Adjust width for smaller screens */
+			}
+
+			.table-container {
+				padding: 10px;
+				/* Decrease padding for smaller screens */
+				margin: 10px;
+				/* Add margin for mobile view */
 			}
 		}
 	</style>
@@ -119,7 +178,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<div class="container">
 				<button id="btn-login" class="button_cerrar">
-					<a th:href="@{/index}" style="color: white; text-decoration: none;">
+					<a href="/index" style="color: white; text-decoration: none;">
 						Cerrar Sesión
 					</a>
 				</button>
@@ -128,22 +187,32 @@
 	</header>
 
 	<main>
-		<div class="table-container text-center">
-			<h1>Opciones de Gestión del Coordinador</h1>
-			<p class="lead">Gestione los registros de coordinadores, estudiantes y calificaciones.</p>
-			<!-- Descripción añadida -->
-			<button class="button-list">
-				<i class="fas fa-user-friends"></i> <!-- Icono de coordinador -->
-				<a href="/coordinadores/">Coordinadores</a>
-			</button>
-			<button class="button-list">
-				<i class="fas fa-user-graduate"></i> <!-- Icono de estudiante -->
-				<a href="/estudiantes/">Estudiantes</a>
-			</button>
-			<button class="button-list">
-				<i class="fas fa-chart-line"></i> <!-- Icono de gráfico para puntajes -->
-				<a href="/calificaciones/">Calificaciones</a>
-			</button>
+		<div class="text-center">
+			<h1><i class="fas fa-chalkboard-teacher"></i> Coordinador</h1>
+			<p>Bienvenido a tu panel de gestión. Aquí puedes administrar tus datos, estudiantes y las calificaciones.
+			</p>
+		</div>
+		<div class="table-container">
+			<div class="button-container">
+				<div class="button-row">
+					<button class="button-list">
+						<i class="fas fa-user-friends"></i>
+						<a href="/coordinadores/">Mis Datos</a>
+					</button>
+				</div>
+				<div class="button-row">
+					<button class="button-list">
+						<i class="fas fa-user-graduate"></i>
+						<a href="/estudiantes/">Estudiantes</a>
+					</button>
+				</div>
+				<div class="button-row">
+					<button class="button-list">
+						<i class="fas fa-chart-line"></i>
+						<a href="/calificaciones/">Calificaciones</a>
+					</button>
+				</div>
+			</div>
 		</div>
 	</main>
 </body>

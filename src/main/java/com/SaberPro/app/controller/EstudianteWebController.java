@@ -108,7 +108,7 @@ public class EstudianteWebController {
 		model.addAttribute("calificacion", calificacionRepository.findByEstudiante(estudiante));
 		estudiante.setRevisado("SI");
 		estudianteRepository.save(estudiante);
-		return "estudiante_menu"; 
+		return "estudiante_menu";
 	}
 
 	@GetMapping("/detallado/{numeroDocumento}")

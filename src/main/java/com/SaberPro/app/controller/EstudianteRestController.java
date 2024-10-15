@@ -21,45 +21,46 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @RequestMapping(value = "/api/estudiantes")
 public class EstudianteRestController {
-	
+
 	@Autowired
-    private EstudianteRepository estudianteRepository;
+	private EstudianteRepository estudianteRepository;
 
-    @GetMapping("/")
-    public List<Estudiante> getAllEstudiantes() {
-        return estudianteRepository.findAll();
-    }
+	@GetMapping("/")
+	public List<Estudiante> getAllEstudiantes() {
+		return estudianteRepository.findAll();
+	}
 
-    @GetMapping("/{id}")
-    public Estudiante getEstudianteById(@PathVariable String id) {
-        return estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException("Estudiante no encontrado"));
-    }
+	@GetMapping("/{id}")
+	public Estudiante getEstudianteById(@PathVariable String id) {
+		return estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException("Estudiante no encontrado"));
+	}
 
-    @PostMapping("/")
-    public Estudiante saveEstudiante(@RequestBody Map<String, Object> body) {
-        ObjectMapper mapper = new ObjectMapper();
-        Estudiante estudiante = mapper.convertValue(body, Estudiante.class);
-        return estudianteRepository.save(estudiante);
-    }
+	@PostMapping("/")
+	public Estudiante saveEstudiante(@RequestBody Map<String, Object> body) {
+		ObjectMapper mapper = new ObjectMapper();
+		Estudiante estudiante = mapper.convertValue(body, Estudiante.class);
+		return estudianteRepository.save(estudiante);
+	}
 
-    @PutMapping("/{id}")
-    public Estudiante updateEstudiante(@PathVariable String id, @RequestBody Map<String, Object> body) {
-        ObjectMapper mapper = new ObjectMapper();
-        Estudiante etudiante = mapper.convertValue(body, Estudiante.class);
-        etudiante.setId(id);
-        return estudianteRepository.save(etudiante);
-    }
+	@PutMapping("/{id}")
+	public Estudiante updateEstudiante(@PathVariable String id, @RequestBody Map<String, Object> body) {
+		ObjectMapper mapper = new ObjectMapper();
+		Estudiante etudiante = mapper.convertValue(body, Estudiante.class);
+		etudiante.setId(id);
+		return estudianteRepository.save(etudiante);
+	}
 
-    @DeleteMapping("/{id}")
-    public Estudiante deleteEstudiante(@PathVariable String id) {
-    	Estudiante estudiante = estudianteRepository.findById(id).orElseThrow(() -> new NotFoundException("Estudiante no encontrado"));
-    	estudianteRepository.deleteById(id);
-        return estudiante;
-    }
-    
-    @PutMapping("/{numeroDocumento}")
-    public Estudiante resultEstudiante(@PathVariable String numeroDocumento) {
-    	return estudianteRepository.findByNumeroDocumento(numeroDocumento);
-    }
+	@DeleteMapping("/{id}")
+	public Estudiante deleteEstudiante(@PathVariable String id) {
+		Estudiante estudiante = estudianteRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Estudiante no encontrado"));
+		estudianteRepository.deleteById(id);
+		return estudiante;
+	}
+
+	@PutMapping("/{numeroDocumento}")
+	public Estudiante resultEstudiante(@PathVariable String numeroDocumento) {
+		return estudianteRepository.findByNumeroDocumento(numeroDocumento);
+	}
 
 }

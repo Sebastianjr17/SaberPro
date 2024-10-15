@@ -17,15 +17,13 @@ import com.SaberPro.app.exception.NotFoundException;
 import com.SaberPro.app.repository.CalificacionRepository;
 import com.SaberPro.app.repository.EstudianteRepository;
 
-
-
-@Controller 
+@Controller
 @RequestMapping("/calificaciones")
 public class CalificacionWebController {
-	
+
 	@Autowired
 	private CalificacionRepository calificacionRepository;
-	
+
 	@Autowired
 	private EstudianteRepository estudianteRepository;
 
@@ -34,21 +32,19 @@ public class CalificacionWebController {
 		model.addAttribute("calificaciones", calificacionRepository.findAll());
 		return "calificaciones-list";
 	}
-	
 
 	@GetMapping("/new")
 	public String calificacionesNewTemplate(Model model, Model estudianteModel) {
-	    List<Estudiante> estudiantes = estudianteRepository.findAll();
-	    estudianteModel.addAttribute("estudiantes", estudiantes);
-	    model.addAttribute("calificacion", new Calificacion());
-	    return "calificaciones-form";
+		List<Estudiante> estudiantes = estudianteRepository.findAll();
+		estudianteModel.addAttribute("estudiantes", estudiantes);
+		model.addAttribute("calificacion", new Calificacion());
+		return "calificaciones-form";
 	}
-
 
 	@GetMapping("/edit/{id}")
 	public String calificacionEditTemplate(@PathVariable("id") String id, Model model, Model estudianteModel) {
-		model.addAttribute("calificacion",
-				calificacionRepository.findById(id).orElseThrow(() -> new NotFoundException("Calificación no encontrado")));
+		model.addAttribute("calificacion", calificacionRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Calificación no encontrado")));
 		List<Estudiante> estudiantes = estudianteRepository.findAll();
 		estudianteModel.addAttribute("estudiantes", estudiantes);
 		return "calificaciones-form";
@@ -62,15 +58,13 @@ public class CalificacionWebController {
 		calificacionRepository.save(Calificacion);
 		return "redirect:/calificaciones/";
 	}
-	
-	
-	
+
 	@GetMapping("/delete/{id}")
 	public String calificacionesDeleteProcess(@PathVariable("id") String id) {
 		calificacionRepository.deleteById(id);
 		return "redirect:/calificaciones/";
 	}
-	
+
 	@GetMapping("/borrar/{id}")
 	public String estudiantesBorrarProcess(@PathVariable("id") String id) {
 		calificacionRepository.deleteById(id);
