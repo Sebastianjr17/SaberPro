@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Mis Datos</title>
+	<title>Coordinadores</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -183,7 +183,7 @@
 		</nav>
 	</header>
 	<div class="text-center">
-		<h1><i class="fas fa-user-friends"></i> Mis Datos</h1>
+		<h1><i class="fas fa-user-friends"></i> Coordinadores</h1>
 	</div>
 	<div class="container">
 		<div class="table-container">
@@ -212,8 +212,7 @@
 								style="border: none; background: transparent; color: black; text-align: center;" />
 						</td>
 						<td>
-							<a class="mx-3 text-success" th:if="${session.authCoordinadorId == coordinador.id}"
-								th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
+							<a class="mx-3 text-success" th:href="@{/coordinadores/edit/{id}(id = ${coordinador.id})}">
 								<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
 									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 									<path fill="currentColor"
@@ -223,8 +222,7 @@
 							</a>
 						</td>
 						<td>
-							<a class="mx-3 text-danger" th:if="${session.authCoordinadorId == coordinador.id}"
-								th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}"
+							<a class="mx-3 text-danger" th:href="@{/coordinadores/delete/{id}(id = ${coordinador.id})}"
 								onclick="return confirm('¿Estás seguro de que deseas eliminar este elemento?');">
 								<svg width="16px" height="16px" viewBox="0 0 17 17" version="1.1"
 									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -243,6 +241,10 @@
 		</div>
 
 		<div class="text-center">
+			<a th:href="@{/coordinadores/new}" class="btn btn-primary"
+				style="background-color:#0A0A61; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
+				Agregar
+			</a>
 			<a href="javascript:history.back()" class="btn btn-secondary"
 				style="background-color:rgb(255, 0, 0); box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); margin-top: 2%; color: aliceblue; font-size: 120%; border-radius: 10px; border: #00121e;">
 				Volver
