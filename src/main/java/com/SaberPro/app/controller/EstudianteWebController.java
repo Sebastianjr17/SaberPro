@@ -105,10 +105,18 @@ public class EstudianteWebController {
 		if (estudiante == null) {
 			throw new NotFoundException("Estudiante no encontrado");
 		}
-		model.addAttribute("calificacion", calificacionRepository.findByEstudiante(estudiante));
+
+		Calificacion calificacion = calificacionRepository.findByEstudiante(estudiante);
+		model.addAttribute("calificacion", calificacion);
+
+		// Establecer el mensaje en caso de que no haya calificaciones
+		if (calificacion == null) {
+			model.addAttribute("mensaje", "No tienes calificaciones disponibles.");
+		}
+
 		estudiante.setRevisado("SI");
 		estudianteRepository.save(estudiante);
-		return "estudiante_menu";
+		return "estudiante_menu"; // Asegúrate de que este es el nombre correcto del template
 	}
 
 	@GetMapping("/detallado/{numeroDocumento}")

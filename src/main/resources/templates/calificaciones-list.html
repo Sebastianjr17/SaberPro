@@ -128,6 +128,7 @@
 </head>
 
 <script>
+	// Estilos y eventos DOM
 	document.addEventListener("DOMContentLoaded", function () {
 		var nivelCells = document.querySelectorAll("td[class^='nivel-']");
 
@@ -144,19 +145,13 @@
 			}
 		});
 	});
-</script>
 
-<script>
+	// Función para calcular nivel por módulo (competencias genéricas)
 	function calcularNivel(puntaje) {
-		if (puntaje == 0) {
-			return 0;
-		} else {
-			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
+		if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+			return "N/A";
 		}
-	}
-</script>
-<script>
-	function calcularNivel(puntaje) {
+
 		if (puntaje >= 191 && puntaje <= 300) {
 			return 4;
 		} else if (puntaje >= 156 && puntaje <= 190) {
@@ -168,40 +163,51 @@
 		} else if (puntaje == 0) {
 			return 0;
 		} else {
-			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
+			return "N/A";
 		}
 	}
 
+	// Función para calcular nivel de inglés
 	function calcularIngles(puntaje) {
-		if (puntaje >= 191 && puntaje <= 300) {
+		if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+			return "N/A";
+		}
+
+		if (puntaje >= 200 && puntaje <= 300) {
 			return "B2";
-		} else if (puntaje >= 156 && puntaje <= 190) {
+		} else if (puntaje >= 170 && puntaje <= 199) {
 			return "B1";
-		} else if (puntaje >= 140 && puntaje <= 155) {
+		} else if (puntaje >= 145 && puntaje <= 169) {
 			return "A2";
-		} else if (puntaje >= 125 && puntaje <= 140) {
+		} else if (puntaje >= 120 && puntaje <= 144) {
 			return "A1";
-		} else if (puntaje >= 0 && puntaje <= 125) {
-			return "A0";
+		} else if (puntaje >= 0 && puntaje <= 119) {
+			return "A-";
 		} else {
-			return "N/A"; // Puedes cambiar esto según tu lógica si el puntaje no está en ningún rango.
+			return "N/A";
 		}
 	}
 
-</script>
+	// Función para calcular nivel por puntaje global
+	function calcularPuntajeGlobal(puntaje) {
+		if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+			return "N/A";
+		}
 
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		var rows = document.querySelectorAll("table tbody tr");
-
-		rows.forEach(function (row) {
-			var anuladoCell = row.querySelector("td:nth-child(3)"); // 3 es el índice de la columna "Anulado"
-
-			if (anuladoCell.textContent.trim().toLowerCase() === "si") {
-				row.style.backgroundColor = "#FF8A81"; // Aplica un fondo rojo a toda la fila
-			}
-		});
-	});
+		if (puntaje >= 191 && puntaje <= 300) {
+			return 4;
+		} else if (puntaje >= 156 && puntaje <= 190) {
+			return 3;
+		} else if (puntaje >= 126 && puntaje <= 155) {
+			return 2;
+		} else if (puntaje > 0 && puntaje <= 125) {
+			return 1;
+		} else if (puntaje == 0) {
+			return 0;
+		} else {
+			return "N/A";
+		}
+	}
 </script>
 
 <body>

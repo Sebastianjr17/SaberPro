@@ -180,66 +180,86 @@
 	</style>
 
 	<script>
+		// Estilos y eventos DOM
 		document.addEventListener("DOMContentLoaded", function () {
-			var nivelCells = document.querySelectorAll("td[class^='nivel-']");
-
-			nivelCells.forEach(function (cell) {
-				var nivel = cell.textContent.trim();
-				if (nivel === "4") {
-					cell.style.backgroundColor = "green"; // Add a color for nivel 4
-				} else if (nivel === "3") {
-					cell.style.backgroundColor = "yellow"; // Add a color for nivel 3
-				} else if (nivel === "2") {
-					cell.style.backgroundColor = "orange"; // Add a color for nivel 2
-				} else if (nivel === "1") {
-					cell.style.backgroundColor = "red"; // Add a color for nivel 1
-				}
-			});
-
+		    var nivelCells = document.querySelectorAll("td[class^='nivel-']");
+		    
+		    nivelCells.forEach(function (cell) {
+		        var nivel = cell.textContent.trim();
+		        if (nivel === "4") {
+		            cell.classList.add("nivel-verde");
+		        } else if (nivel === "3") {
+		            cell.classList.add("nivel-amarillo");
+		        } else if (nivel === "2") {
+		            cell.classList.add("nivel-azul");
+		        } else if (nivel === "1") {
+		            cell.classList.add("nivel-rojo");
+		        }
+		    });
 		});
-	</script>
-	<script>
+		
+		// Función para calcular nivel por módulo (competencias genéricas)
 		function calcularNivel(puntaje) {
-			if (puntaje == 0) {
-				return 0;
-			} else {
-				return "N/A";
-			}
+		    if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+		        return "N/A";
+		    }
+		    
+		    if (puntaje >= 191 && puntaje <= 300) {
+		        return 4;
+		    } else if (puntaje >= 156 && puntaje <= 190) {
+		        return 3;
+		    } else if (puntaje >= 126 && puntaje <= 155) {
+		        return 2;
+		    } else if (puntaje > 0 && puntaje <= 125) {
+		        return 1;
+		    } else if (puntaje == 0) {
+		        return 0;
+		    } else {
+		        return "N/A";
+		    }
 		}
-	</script>
-	<script>
-		function calcularNivel(puntaje) {
-			if (puntaje >= 191 && puntaje <= 300) {
-				return 4;
-			} else if (puntaje >= 156 && puntaje <= 190) {
-				return 3;
-			} else if (puntaje >= 126 && puntaje <= 155) {
-				return 2;
-			} else if (puntaje > 0 && puntaje <= 125) {
-				return 1;
-			} else if (puntaje == 0) {
-				return 0;
-			} else {
-				return "N/A";
-			}
-		}
-
+		
+		// Función para calcular nivel de inglés
 		function calcularIngles(puntaje) {
-			if (puntaje >= 191 && puntaje <= 300) {
-				return "B2";
-			} else if (puntaje >= 156 && puntaje <= 190) {
-				return "B1";
-			} else if (puntaje >= 140 && puntaje <= 155) {
-				return "A2";
-			} else if (puntaje >= 125 && puntaje <= 140) {
-				return "A1";
-			} else if (puntaje >= 0 && puntaje <= 125) {
-				return "A0";
-			} else {
-				return "N/A";
-			}
+		    if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+		        return "N/A";
+		    }
+		    
+		    if (puntaje >= 200 && puntaje <= 300) {
+		        return "B2";
+		    } else if (puntaje >= 170 && puntaje <= 199) {
+		        return "B1";
+		    } else if (puntaje >= 145 && puntaje <= 169) {
+		        return "A2";
+		    } else if (puntaje >= 120 && puntaje <= 144) {
+		        return "A1";
+		    } else if (puntaje >= 0 && puntaje <= 119) {
+		        return "A-";
+		    } else {
+		        return "N/A";
+		    }
 		}
-
+		
+		// Función para calcular nivel por puntaje global
+		function calcularPuntajeGlobal(puntaje) {
+		    if (typeof puntaje !== 'number' || isNaN(puntaje)) {
+		        return "N/A";
+		    }
+		    
+		    if (puntaje >= 191 && puntaje <= 300) {
+		        return 4;
+		    } else if (puntaje >= 156 && puntaje <= 190) {
+		        return 3;
+		    } else if (puntaje >= 126 && puntaje <= 155) {
+		        return 2;
+		    } else if (puntaje > 0 && puntaje <= 125) {
+		        return 1;
+		    } else if (puntaje == 0) {
+		        return 0;
+		    } else {
+		        return "N/A";
+		    }
+		}
 	</script>
 
 <body>

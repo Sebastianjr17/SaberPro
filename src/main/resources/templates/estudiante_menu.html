@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 	<style>
+		/* Estilos que ya tienes */
 		body {
 			font-family: 'Roboto Slab', serif;
 			background-color: #f5f5f5;
@@ -208,7 +209,14 @@
 	<div class="container">
 		<div class="table-container">
 			<h2 class="text-center">Resultados de Saber Pro</h2>
-			<table class="table table-striped">
+
+			<!-- Mensaje cuando no hay calificaciones -->
+			<div th:if="${mensaje}" class="alert alert-warning" role="alert">
+				<span th:text="${mensaje}">No tienes calificaciones disponibles.</span>
+			</div>
+
+			<!-- Tabla solo si hay calificaciones -->
+			<table class="table table-striped" th:if="${calificacion != null}">
 				<thead>
 					<tr>
 						<th>Primer Nombre</th>
@@ -241,7 +249,7 @@
 
 	<div class="text-center">
 		<a th:href="@{/estudiantes/detallado/{numeroDocumento}(numeroDocumento=${calificacion.estudiante.numeroDocumento})}"
-			class="button-result">
+			class="button-result" th:if="${calificacion != null}">
 			Resultados Detallados
 		</a>
 	</div>
