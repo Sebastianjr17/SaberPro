@@ -64,7 +64,7 @@ public class EstudianteWebController {
 			estudiante.setId(null);
 		}
 		if (estudiante.getRevisado() == null || estudiante.getRevisado().isEmpty()) {
-			estudiante.setRevisado("no");
+			estudiante.setRevisado("NO");
 		}
 	}
 

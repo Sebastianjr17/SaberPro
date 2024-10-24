@@ -69,7 +69,7 @@ public class CoordinadorWebController {
 			return "coordinador_menu";
 		} else {
 			model.addAttribute("authenticationFailed", true);
-			model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
+			model.addAttribute("errorMessage", "Correo o Clave incorrecto");
 			return "index";
 		}
 	}
