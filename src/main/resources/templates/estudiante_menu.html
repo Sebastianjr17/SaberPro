@@ -186,6 +186,10 @@
 			return "N/A";
 		}
 	}
+
+	function calcularEstado(puntaje) {
+		return puntaje > 125 ? "Aprobado" : "Desaprobado";
+	}
 </script>
 
 <body>
@@ -225,6 +229,7 @@
 						<th>Número de Registro</th>
 						<th>Puntaje Total</th>
 						<th>Nivel</th>
+						<th>Estado</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -239,6 +244,12 @@
 								var puntaje1 = /*[(${calificacion.puntajeTotal} == 'N/A' ? 0 : ${calificacion.puntajeTotal})]*/ 0;
 								var nivel1 = calcularNivel(puntaje1);
 								document.write('<span class="nivel-' + nivel1 + '">' + nivel1 + '</span>');
+							</script>
+						</td>
+						<td>
+							<script th:inline="javascript">
+								var estado1 = calcularEstado(puntaje1);
+								document.write('<span>' + estado1 + '</span>');
 							</script>
 						</td>
 					</tr>
